@@ -1,8 +1,12 @@
-class Kentaur(name: String, hp: Int):Hero(name, hp) {
+package Heroes
 
-    var MAX_HP = 200
+import Villains.Villain
 
-    fun putOut(){
+class Kentaur(name: String, hp: Int): Hero(name, hp) {
+
+    val MAX_HP = 350
+
+    fun putOut(villain: Villain){
         println("Wuhihihihi, I'm the Zentaur $name")
         println("For Hornor and Strength")
         println("$name, choose your action:")
@@ -11,7 +15,7 @@ class Kentaur(name: String, hp: Int):Hero(name, hp) {
         println("3. Use Protective Spell")
         var answere = readLine()?.lowercase()
         if (answere == "attack"){
-            attack()
+            attack(villain)
         } else if (answere == "heal") {
             heal(MAX_HP)
         } else if (answere == "use protective spell"){
@@ -20,8 +24,8 @@ class Kentaur(name: String, hp: Int):Hero(name, hp) {
     }
 
 
-    override fun attack(){
-        super.attack()
+    override fun attack(villain: Villain){
+        super.attack(villain)
     }
 
     override fun heal(MAX_HP: Int) {
@@ -32,8 +36,12 @@ class Kentaur(name: String, hp: Int):Hero(name, hp) {
         super.useProtectivePotion()
     }
 
-    override fun protect() {
-        return super.protect()
+    override fun takeDamage(damage: Int) {
+        super.takeDamage(damage)
+    }
+
+    override fun info() {
+        super.info()
     }
 
 }

@@ -1,9 +1,14 @@
-class Warrior(name: String, hp: Int):Hero(name, hp) {
+package Heroes
 
-    var MAX_HP = 200
+import Villains.Villain
+import Villains.`Zyklop(Final Boss)`
 
-    fun putOut(){
-        println("Hello i'm the Warrior $name")
+class Warrior(name: String, hp: Int): Hero(name, hp) {
+
+    val MAX_HP = 400
+
+    fun putOut(villain: Villain){
+        println("Hello i'm the Heroes.Warrior $name")
         println("Victory or Valhalla!")
         println("$name, choose your action:")
         println("1. Attack")
@@ -11,7 +16,7 @@ class Warrior(name: String, hp: Int):Hero(name, hp) {
         println("3. Use Protective Spell")
         var answere = readLine()?.lowercase()
         if (answere == "attack"){
-            attack()
+            attack(villain)
         } else if (answere == "heal") {
             heal(MAX_HP)
         } else if (answere == "use protective spell"){
@@ -20,7 +25,7 @@ class Warrior(name: String, hp: Int):Hero(name, hp) {
     }
 
 
-    override fun attack() {
+    override fun attack(villain: Villain) {
         val randomNumber: Int = (50..150).random()                   //hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
             println("Oh, no, i missed!")
@@ -43,8 +48,12 @@ class Warrior(name: String, hp: Int):Hero(name, hp) {
         super.useProtectivePotion()
     }
 
-    override fun protect() {
-        return super.protect()
+    override fun takeDamage(damage: Int) {
+        super.takeDamage(damage)
+    }
+
+    override fun info() {
+        super.info()
     }
 
 }
