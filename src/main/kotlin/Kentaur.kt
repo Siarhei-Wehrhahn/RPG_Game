@@ -1,6 +1,5 @@
-class Kentaur(var name: String,var hp: Int):Hero(name, hp) {
+class Kentaur(name: String, hp: Int):Hero(name, hp) {
 
-    var isProtected = false
     var MAX_HP = 200
 
     fun putOut(){
@@ -14,39 +13,27 @@ class Kentaur(var name: String,var hp: Int):Hero(name, hp) {
         if (answere == "attack"){
             attack()
         } else if (answere == "heal") {
-            heal()
+            heal(MAX_HP)
         } else if (answere == "use protective spell"){
             useProtectivePotion()
         }
     }
 
 
-    private fun attack(): Int {
-        val randomNumber: Int = (0..100).random()
-        return randomNumber
+    override fun attack(){
+        super.attack()
     }
 
-    private fun heal() {
-        val healingAmount = 150
-        hp += healingAmount
-        if (hp > MAX_HP) {
-            hp = MAX_HP
-        }
-        println("$name heals for $healingAmount HP!")
+    override fun heal(MAX_HP: Int) {
+        super.heal(MAX_HP)
     }
 
-    private fun useProtectivePotion() {
-        if (!isProtected && bag.contains("Protective Potion")) {
-            println("$name uses a Protective Potion!")
-            bag.remove("Protective Potion")
-            isProtected = true
-        } else {
-            println("$name cannot use a Protective Potion now.")
-        }
+    override fun useProtectivePotion() {
+        super.useProtectivePotion()
     }
 
-    fun isProtected(): Boolean {
-        return true
+    override fun protect() {
+        return super.protect()
     }
 
 }

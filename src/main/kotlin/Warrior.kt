@@ -1,6 +1,5 @@
-class Warrior(var name: String,var hp: Int):Hero(name, hp) {
+class Warrior(name: String, hp: Int):Hero(name, hp) {
 
-    var isProtected = false
     var MAX_HP = 200
 
     fun putOut(){
@@ -14,39 +13,38 @@ class Warrior(var name: String,var hp: Int):Hero(name, hp) {
         if (answere == "attack"){
             attack()
         } else if (answere == "heal") {
-            heal()
+            heal(MAX_HP)
         } else if (answere == "use protective spell"){
             useProtectivePotion()
         }
     }
 
 
-    private fun attack(): Int {
-        val randomNumber: Int = (0..100).random()
-        return randomNumber
-    }
-
-    private fun heal() {
-        val healingAmount = 150
-        hp += healingAmount
-        if (hp > MAX_HP) {
-            hp = MAX_HP
-        }
-        println("$name heals for $healingAmount HP!")
-    }
-
-    private fun useProtectivePotion() {
-        if (!isProtected && bag.contains("Protective Potion")) {
-            println("$name uses a Protective Potion!")
-            bag.remove("Protective Potion")
-            isProtected = true
-        } else {
-            println("$name cannot use a Protective Potion now.")
+    override fun attack() {
+        val randomNumber: Int = (50..150).random()                   //hier wir die attacke zufällig generiert
+        if (randomNumber == 0) {
+            println("Oh, no, i missed!")
+        } else if ((randomNumber > 1) && (randomNumber < 25)) {
+            println("That was weak!")
+        } else if ((randomNumber > 25) && (randomNumber < 75)) {
+            println("Good Attack!")
+        } else if ((randomNumber > 75)&&(randomNumber < 125)) {
+            println("Perfekt! That was strong.")
+        } else if (randomNumber > 125) {
+            println("Incredible!")
         }
     }
 
-    fun isProtected(): Boolean {
-        return true
+    override fun heal(MAX_HP: Int) {
+        super.heal(MAX_HP)
+    }
+
+    override fun useProtectivePotion() {
+        super.useProtectivePotion()
+    }
+
+    override fun protect() {
+        return super.protect()
     }
 
 }
