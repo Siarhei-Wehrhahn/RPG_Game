@@ -1,7 +1,6 @@
 package Heroes
 
 import Villains.Villain
-import Villains.`Zyklop(Final Boss)`
 
 class Warrior(name: String, hp: Int): Hero(name, hp) {
 

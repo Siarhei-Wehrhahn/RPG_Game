@@ -29,6 +29,13 @@ open class Villain(var name: String, var hp: Int) {
     }
 
     open fun underUnderBoss(){
-        println("Oh no ")
+        println("A hellhound has come to the rescue.")
+        hp += 200
     }
+
+    open fun cyclopsBreath(){
+        println("I breathe you away GAAAARRR!")
+    }
+
+    open fun
 }

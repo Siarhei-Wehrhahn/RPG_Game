@@ -2,7 +2,7 @@ package Villains
 
 import Heroes.Hero
 
-open class `Zyklop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
+open class `Cyclop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
 
     val MAX_HP = 1000
 
