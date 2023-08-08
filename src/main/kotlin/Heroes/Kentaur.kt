@@ -4,11 +4,15 @@ import Villains.Villain
 
 class Kentaur(name: String, hp: Int): Hero(name, hp) {
 
-    val MAX_HP = 350
+    private val MAX_HP = 500
+
+    fun introduceOneself(){
+        println("\u001B[37mWuhihihihi, I'm the Zentaur $name")
+        println("For Hornor and Strength\u001B[0m")
+        println("\u001B[33m---------------------------------------\u001B[0m")
+    }
 
     fun putOut(villain: Villain){
-        println("Wuhihihihi, I'm the Zentaur $name")
-        println("For Hornor and Strength")
         println("$name, choose your action:")
         println("1. Attack")
         println("2. Heal")
@@ -25,6 +29,7 @@ class Kentaur(name: String, hp: Int): Hero(name, hp) {
 
 
     override fun attack(villain: Villain){
+        println("$name charges forward, employing both his archery skills and powerful hooves in the attack!")
         super.attack(villain)
     }
 

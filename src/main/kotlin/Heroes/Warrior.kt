@@ -4,11 +4,15 @@ import Villains.Villain
 
 class Warrior(name: String, hp: Int): Hero(name, hp) {
 
-    val MAX_HP = 400
+    private val MAX_HP = 400
+
+    fun introduceOneself(){
+        println("\u001B[0mHello i'm the Heroes.Warrior $name")
+        println("Victory or Valhalla!\u001B[0m")
+        println("\u001B[33m---------------------------------------\u001B[0m")
+    }
 
     fun putOut(villain: Villain){
-        println("Hello i'm the Heroes.Warrior $name")
-        println("Victory or Valhalla!")
         println("$name, choose your action:")
         println("1. Attack")
         println("2. Heal")
@@ -25,7 +29,19 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
 
 
     override fun attack(villain: Villain) {
-        val randomNumber: Int = (50..150).random()                   //hier wir die attacke zufällig generiert
+        var randomNumber = (0..100).random()
+
+        // Wenn er auf vitaminen ist dann, bekommt er 10 % mehr stärke
+        if (isOnVitamine){
+            randomNumber *=  1.1 .toInt()
+        } else {
+        }
+
+        // Hier wird der bösewicht anvisiert
+        villain.takeDamageEvil(randomNumber)
+        println("$name raises their mighty sword and charges forward!")
+
+        // Hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
             println("Oh, no, i missed!")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
