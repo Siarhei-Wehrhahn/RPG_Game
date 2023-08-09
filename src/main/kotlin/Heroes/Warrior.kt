@@ -7,22 +7,23 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
     private val MAX_HP = 400
 
     fun introduceOneself(){
-        println("||\u001B[0mHello i'm a Warrior who is called $name\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
-        println("||\u001B[0mVictory or Valhalla!\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
-        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
+        println("$space\u001B[0m Hello i'm a Warrior who is called $name\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[0m Victory or Valhalla!\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
-    fun putOut(villain: Villain){
-        println("||$name, choose your action:")
-        println("||1. Attack")
-        println("||2. Heal")
-        println("||3. Use Protective Spell")
+    override fun putOut(villain: Villain){
+        println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        print("$space ")
         var answere = readLine()?.lowercase()
-        if (answere == "attack"){
+        if ((answere == "attack") || (answere == "1")){
             attack(villain)
-        } else if (answere == "heal") {
+        } else if ((answere == "heal") || (answere == "2")) {
             heal(MAX_HP)
-        } else if (answere == "use protective spell"){
+        } else if ((answere == "use protective spell") || (answere == "3")){
             useProtectivePotion()
         }
     }
@@ -39,19 +40,19 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
 
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
-        println("||$name raises their mighty sword and charges forward!")
+        println("$space $name raises their mighty sword and charges forward!\t\t\t\t\t\t\t\t\t\t\t$space")
 
         // Hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
-            println("||Oh, no, i missed!")
+            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("||That was weak!")
+            println("$space That was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
-            println("||Good Attack!")
+            println("$space Good Attack!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 75)&&(randomNumber < 125)) {
-            println("||Perfekt! That was strong.")
+            println("$space Perfekt! That was strong.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         } else if (randomNumber > 125) {
-            println("||Incredible!")
+            println("$space Incredible!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         }
     }
 
@@ -69,6 +70,10 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
 
     override fun info() {
         super.info()
+    }
+
+    override fun isAlive() {
+        super.isAlive()
     }
 
 }

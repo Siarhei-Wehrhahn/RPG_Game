@@ -7,29 +7,30 @@ class Kentaur(name: String, hp: Int): Hero(name, hp) {
     private val MAX_HP = 500
 
     fun introduceOneself(){
-        println("||\u001B[37mWuhihihihi, I'm the Zentaur $name\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
-        println("||\u001B[37mFor Hornor and Strength\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
-        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
+        println("$space\u001B[37m Wuhihihihi, I'm the Zentaur $name\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[37m For Hornor and Strength\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
-    fun putOut(villain: Villain){
-        println("||$name, choose your action:")
-        println("||1. Attack")
-        println("||2. Heal")
-        println("||. Use Protective Spell")
+    override fun putOut(villain: Villain){
+        println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        print("$space ")
         var answere = readLine()?.lowercase()
-        if (answere == "attack"){
+        if ((answere == "attack") || (answere == "1")){
             attack(villain)
-        } else if (answere == "heal") {
+        } else if ((answere == "heal") || (answere == "2")) {
             heal(MAX_HP)
-        } else if (answere == "use protective spell"){
+        } else if ((answere == "use protective spell") || (answere == "3")){
             useProtectivePotion()
         }
     }
 
 
     override fun attack(villain: Villain){
-        println("|$name charges forward, employing both his archery skills and powerful hooves in the attack!")
+        println("$space $name charges forward, employing both his archery skills and powerful hooves in the attack!\t$space")
         super.attack(villain)
     }
 
@@ -47,6 +48,10 @@ class Kentaur(name: String, hp: Int): Hero(name, hp) {
 
     override fun info() {
         super.info()
+    }
+
+    override fun isAlive() {
+        super.isAlive()
     }
 
 }

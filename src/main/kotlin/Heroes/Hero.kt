@@ -4,12 +4,28 @@ import Villains.Villain
 
 open class Hero(var name: String, var hp: Int) {
 
+    val space = "|||||||||||||||||||||||||||||||||||||"
+    var alive = true
+
     // Das ist die Tashe der helden
     var bag: MutableList<String> = mutableListOf("Healing Potion", "Healing Potion", "Healing Potion", "Healing Potion", "Vitamins", "Vitamins", "Vitamins")
 
     // Hier wir festgelegt, ob er gerade geschützt ist oder nicht
     var isProtected: Boolean = false
     var isOnVitamine: Boolean = false
+
+    open fun putOut(villain: Villain){
+        // Hier kann der spieler seine handlung bestimmen ob
+        println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+
+        // Hier wird die antwort erwartet, die auf 95 zeichen begrenzt wurde, aus optischen gründen
+        print("$space ")
+        val answere = readLine()?.lowercase()
+
+    }
 
     // Attacke mit zufälligen werten gegen den bösewicht
     open fun attack(villain: Villain) {
@@ -26,13 +42,13 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird erwähnt, wie der angriff war
         if (randomNumber == 0) {
-            println("||Oh, no, i missed!")
+            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("||That was weak!")
+            println("$space That was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
-            println("||Good Attack!")
+            println("$space Good Attack!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if (randomNumber > 75) {
-            println("||Perfekt! That was strong.")
+            println("$space Perfekt! That was strong.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
     }
 
@@ -42,7 +58,7 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird kontrolliert, ob noch ein trank in rucksack ist
         if (bag.contains("Healing Potion")) {
-            println("||You drin the healing potion.")
+            println("$space You drink the healing potion.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
 
             // Die 150 hp werden zu den hp vom hero dazugezählt
             hp += healingAmount
@@ -50,9 +66,9 @@ open class Hero(var name: String, var hp: Int) {
             // Wenn die hp voll sind, wird es anders ausgegeben als, wenn die nur gefüllt werden
             if (hp > MAX_HP) {
                 hp = MAX_HP
-                println("||You reached the max hp!")
+                println("$space You reached the max hp!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             } else{
-                println("||$name heals for $healingAmount HP!")
+                println("$space $name heals for $healingAmount HP!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             }
         }
     }
@@ -66,7 +82,7 @@ open class Hero(var name: String, var hp: Int) {
             bag.remove("Protective Potion")
             isProtected = true
         } else {
-            println("||$name cannot use a Protective Potion now.")
+            println("$space $name cannot use a Protective Potion now.")
         }
     }
 
@@ -76,14 +92,23 @@ open class Hero(var name: String, var hp: Int) {
         // Die Damage(randomNumber) von den Bösewichten wird von den hp abgezogen
         hp -= damage
         if (hp <= 0) {
-            println("||$name are Dead!")
+            println("$space $name are Dead!")
         } else {
-            println("||$name takes $damage damage. Remaining HP: $hp")
+            println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
     }
 
     // Hier werden die HP zu dem passendem Heroes.Hero gedruckt
     open fun info() {
-        println("||$name have $hp")
+        println("$space $name have $hp")
     }
+
+    open fun isAlive(){
+        if (hp > 0){
+            alive = true
+        } else {
+            alive = false
+        }
+    }
+
 }

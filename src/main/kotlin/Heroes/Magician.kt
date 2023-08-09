@@ -8,34 +8,35 @@ class Magician(name: String, hp: Int): Hero(name, hp){           // Klasse angel
 
     fun introduceOneself(){
         // Hier stellt sich der Held vor
-        println("||\u001B[34mHello I'm the Wizard $name.\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
+        println("$space\u001B[34m Hello I'm the Wizard $name.\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
 
         // Hier ist der schlachtruf
-        println("||\u001B[34mBy the power of magic, prevai!\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
-        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
+        println("$space\u001B[34m By the power of magic, prevai!\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
-    fun putOut(villain: Villain){
+    override fun putOut(villain: Villain){
         // Hier kann der spieler seine handlung bestimmen ob
-        println("||$name, choose your action:")
-        println("||1. Attack")
-        println("||2. Heal")
-        println("||3. Use Protective Spell")
+        println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
 
         // Hier wird die antwort erwartet
+        print("$space ")
         var answere = readLine()?.lowercase()
-        if (answere == "attack"){
+        if ((answere == "attack") || (answere == "1")){
             attack(villain)
-        } else if (answere == "heal") {
+        } else if ((answere == "heal") || (answere == "2")) {
             heal(MAX_HP)
-        } else if (answere == "use protective spell"){
+        } else if ((answere == "use protective spell") || (answere == "3")){
             useProtectivePotion()
         }
     }
 
 
     override fun attack(villain: Villain) {
-        println("||$name's fingertips crackle with arcane energy as a dazzling spell takes shape!")
+        println("$space $name's fingertips crackle with arcane energy as a dazzling spell takes shape!\t\t\t\t$space")
         super.attack(villain)
     }
 
@@ -53,6 +54,10 @@ class Magician(name: String, hp: Int): Hero(name, hp){           // Klasse angel
 
     override fun info() {
         super.info()
+    }
+
+    override fun isAlive() {
+        super.isAlive()
     }
 
 }

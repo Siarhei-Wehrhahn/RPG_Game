@@ -4,12 +4,15 @@ import Heroes.Hero
 
 open class Villain(var name: String, var hp: Int) {
 
+    open val space = "|||||||||||||||||||||||||||||||||||||"
+    var alive = true
+
     open fun takeDamageEvil(damage: Int) {
         hp -= damage
         if (hp <= 0) {
-            println("$name you are a lucky one!")
+            println("$space $name you are a lucky one! You are still alive.\t\t\t\t\t\t\t\t\t\t\t$space")
         } else {
-            println("$name takes $damage damage. Remaining HP: $hp")
+            println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
     }
 
@@ -17,219 +20,228 @@ open class Villain(var name: String, var hp: Int) {
     open fun evilAttack(hero: Hero) {
         val randomNumber: Int = (0..150).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if (randomNumber > 100) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
     }
 
     // Es wird ein helfer gerufen der schutz bietet und angreift
     open fun underUnderBoss(){
-        println("A hellhound has come to the rescue.")
+        println("$space A hellhound has come to the rescue.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         hp += 200
     }
 
     // Kleiner Flächenschaden wegen stampfer
     open fun stomper(hero: Hero){
-        println("Feel the earth tremble beneath my might!")
+        println("$space Feel the earth tremble beneath my might!$space")
         val randomNumber: Int = (0..100).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 100) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Wirft großen stein auf seine gegner
     open fun boulderHurl(hero: Hero){
-        println("Witness the power of flying boulders!")
+        println("$space Witness the power of flying boulders!$space")
         val randomNumber: Int = (0..175).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 70)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 70) && (randomNumber < 130)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 130) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Durch schlag auf boden, entsteht ein Erbeben was einen größeren Schaden anrichtet wie stomper()
     open fun quakeCall(hero: Hero){
-        println("Bow before the earth's fury!")
+        println("$space Bow before the earth's fury!$space")
         val randomNumber: Int = (0..150).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 100) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Auge schießt feurige Energie, die bei kontakt zu verbrennungen führt
     open fun fieryGaze(hero: Hero){
-        println("Burn in the flames of my gaze!")
+        println("$space Burn in the flames of my gaze!$space")
         val randomNumber: Int = (0..200).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 100)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 100) && (randomNumber < 150)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 150) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Zyklop fesselt die gegner während er sich auf eine andere fähigkeit konzentriert (Helden setzen 1 runde aus)
     open fun chainBind(hero: Hero){
-        println("Bound by unbreakable chains!")
-        println("The heroes are bound!")
+        println("$space Bound by unbreakable chains!$space")
+        println("$space The heroes are bound!$space")
     }
 
     // Zyklop feuert gewaltige Energy aus seinem Auge, welche 500 Schaden anrichtet aber auch 200 bei sich selbst.
     open fun wrathOfTheGods(hero: Hero){
-        println("Behold the wrath of the gods unleashed!")
+        println("$space Behold the wrath of the gods unleashed!$space")
         val randomNumber: Int = (0..500).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 150)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 150) && (randomNumber < 350)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 350) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Angriffe für den Satyr
     // Doppelhuf sorgt für einen Erdstoß, der den Gegner trifft
     open fun doubleHoofStrike(hero: Hero){
-        println("Feel the thunder of my hooves!")
+        println("$space Feel the thunder of my hooves!$space")
         val randomNumber: Int = (0..75).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 20) && (randomNumber < 40)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 40) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Flötenzauber raubt die lebensenergie
     open fun fluteEnchantment(hero: Hero){
-        println("Dance to the melody of enchantment!")
+        println("$space Dance to the melody of enchantment!$space")
         val randomNumber: Int = (0..50).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 20) && (randomNumber < 30)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 30) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!")
         }
     }
 
     // Waldes fluch entfesselt einen fluch, der Pflanzen und Tiere auf die Feine losgehen lässt
     open fun forestCurse(hero: Hero){
-        println("Natire's wrath shall be your undoing!")
+        println("$space Native's wrath shall be your undoing!$space")
         val randomNumber: Int = (0..100).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 25) && (randomNumber < 65)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 65) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Panischer schrei versetzt Furcht und Panik in die Herzen der Gegner
     open fun panicCry(hero: Hero){
-        println("Tremble in the grip of fear!")
+        println("$space Tremble in the grip of fear!$space")
         val randomNumber: Int = (0..30).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 20) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Äther beschwörung bring Kräfte aus anderen Dimmensionen zum Satyr
     open fun aetherConjuring(hero: Hero){
-        println("From beyond the realms, I summon!")
+        println("$space From beyond the realms, I summon!$space")
         val randomNumber: Int = (0..50).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 35) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     // Satyrischer Sturm beschwört einen Sturm herbei, der alle gegner wegfegt
     open fun satyricTempest(hero: Hero){
-        println("Unleash the storm of a wild heart!")
+        println("$space Unleash the storm of a wild heart!$space")
         val randomNumber: Int = (0..80).random()
         hero.takeDamage(randomNumber)
-        println("$name attacks ${hero.name} for $randomNumber damage!")
+        println("$space $name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
-            println("$name's attack missed!")
+            println("$space $name's attack missed!$space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$name's attack was weak!")
+            println("$space $name's attack was weak!$space")
         } else if ((randomNumber > 20) && (randomNumber < 50)) {
-            println("$name's attack was good!")
+            println("$space $name's attack was good!$space")
         } else if (randomNumber > 50) {
-            println("$name's attack was strong!")
+            println("$space $name's attack was strong!$space")
         }
     }
 
     open fun info() {
-        println("$name have $hp")
+        println("$space $name have $hp$space")
     }
+
+    open fun isAlive(){
+        if (hp > 0){
+            alive = true
+        } else {
+            alive = false
+        }
+    }
+
 }

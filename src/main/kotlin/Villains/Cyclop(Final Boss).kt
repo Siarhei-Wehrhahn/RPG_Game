@@ -3,12 +3,11 @@ package Villains
 import Heroes.Hero
 
 open class `Cyclop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
-    val MAX_HP = 1000
 
     fun putOut(){
-        println("||\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mI'm $name\u001B[0m|| \n||\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mFor the streng of the Cyclops!\u001B[0m||")
-        println("||\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mGAAARRH!!\u001B[0m||")
-        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mI'm $name\u001B[0m\t\t\t\t\t\t\t\t\t$space \n$space\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mFor the streng of the Cyclops!\u001B[0m\t\t\t\t$space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[31mGAAARRH!!\u001B[0m\t\t\t\t\t\t\t\t\t$space")
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
 
@@ -67,4 +66,9 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
     override fun info() {
         super.info()
     }
+
+    override fun isAlive() {
+        super.isAlive()
+    }
+
 }
