@@ -8,19 +8,19 @@ class Magician(name: String, hp: Int): Hero(name, hp){           // Klasse angel
 
     fun introduceOneself(){
         // Hier stellt sich der Held vor
-        println("\n\u001B[34mHello I'm the Heroes.Magician $name.")
+        println("||\u001B[34mHello I'm the Wizard $name.\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
 
         // Hier ist der schlachtruf
-        println("By the power of magic, prevai!\u001B[0m")
-        println("\u001B[33m---------------------------------------\u001B[0m")
+        println("||\u001B[34mBy the power of magic, prevai!\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
+        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
     }
 
     fun putOut(villain: Villain){
         // Hier kann der spieler seine handlung bestimmen ob
-        println("$name, choose your action:")
-        println("1. Attack")
-        println("2. Heal")
-        println("3. Use Protective Spell")
+        println("||$name, choose your action:")
+        println("||1. Attack")
+        println("||2. Heal")
+        println("||3. Use Protective Spell")
 
         // Hier wird die antwort erwartet
         var answere = readLine()?.lowercase()
@@ -35,7 +35,7 @@ class Magician(name: String, hp: Int): Hero(name, hp){           // Klasse angel
 
 
     override fun attack(villain: Villain) {
-        println("$name's fingertips crackle with arcane energy as a dazzling spell takes shape!")
+        println("||$name's fingertips crackle with arcane energy as a dazzling spell takes shape!")
         super.attack(villain)
     }
 

@@ -7,16 +7,16 @@ class Kentaur(name: String, hp: Int): Hero(name, hp) {
     private val MAX_HP = 500
 
     fun introduceOneself(){
-        println("\u001B[37mWuhihihihi, I'm the Zentaur $name")
-        println("For Hornor and Strength\u001B[0m")
-        println("\u001B[33m---------------------------------------\u001B[0m")
+        println("||\u001B[37mWuhihihihi, I'm the Zentaur $name\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
+        println("||\u001B[37mFor Hornor and Strength\u001B[0m\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||")
+        println("||\u001B[33m----------------------------------------------------------------------------------------------\u001B[0m||")
     }
 
     fun putOut(villain: Villain){
-        println("$name, choose your action:")
-        println("1. Attack")
-        println("2. Heal")
-        println("3. Use Protective Spell")
+        println("||$name, choose your action:")
+        println("||1. Attack")
+        println("||2. Heal")
+        println("||. Use Protective Spell")
         var answere = readLine()?.lowercase()
         if (answere == "attack"){
             attack(villain)
@@ -29,7 +29,7 @@ class Kentaur(name: String, hp: Int): Hero(name, hp) {
 
 
     override fun attack(villain: Villain){
-        println("$name charges forward, employing both his archery skills and powerful hooves in the attack!")
+        println("|$name charges forward, employing both his archery skills and powerful hooves in the attack!")
         super.attack(villain)
     }
 

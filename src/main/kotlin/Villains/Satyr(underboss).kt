@@ -1,15 +1,16 @@
 package Villains
 
 import Heroes.Hero
+import Heroes.Magician
 
 open class `Satyr(underboss)`(name: String, hp: Int): Villain(name, hp) {
 
     val MAX_HP = 500
     fun putOut(){
-        println("I'm $name \nI'm fighting for destruction and dark power!")
+        println("||\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[35mI'm $name \u001B[0m\t\t\t\t\t\t\t\t\t||\n||\t\t\t\t\t\t\t\t\t\t\t\t\t\u001B[35mI'm fighting for destruction and dark power!\u001B[0m||")
     }
 
-    fun attack(){
+    fun attack(hero: Hero) {
         var attacks: List<String> = listOf("doubleHoofStrike", "fluteEnchantment", "forestCurse", "panicCry", "aetherConjuring", "satyricTempest")
         var index = (0..7).random()
         var attackName = attacks[index]

@@ -26,13 +26,13 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird erwähnt, wie der angriff war
         if (randomNumber == 0) {
-            println("Oh, no, i missed!")
+            println("||Oh, no, i missed!")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("That was weak!")
+            println("||That was weak!")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
-            println("Good Attack!")
+            println("||Good Attack!")
         } else if (randomNumber > 75) {
-            println("Perfekt! That was strong.")
+            println("||Perfekt! That was strong.")
         }
     }
 
@@ -42,7 +42,7 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird kontrolliert, ob noch ein trank in rucksack ist
         if (bag.contains("Healing Potion")) {
-            println("You drin the healing potion.")
+            println("||You drin the healing potion.")
 
             // Die 150 hp werden zu den hp vom hero dazugezählt
             hp += healingAmount
@@ -50,9 +50,9 @@ open class Hero(var name: String, var hp: Int) {
             // Wenn die hp voll sind, wird es anders ausgegeben als, wenn die nur gefüllt werden
             if (hp > MAX_HP) {
                 hp = MAX_HP
-                println("You reached the max hp!")
+                println("||You reached the max hp!")
             } else{
-                println("$name heals for $healingAmount HP!")
+                println("||$name heals for $healingAmount HP!")
             }
         }
     }
@@ -66,7 +66,7 @@ open class Hero(var name: String, var hp: Int) {
             bag.remove("Protective Potion")
             isProtected = true
         } else {
-            println("$name cannot use a Protective Potion now.")
+            println("||$name cannot use a Protective Potion now.")
         }
     }
 
@@ -76,14 +76,14 @@ open class Hero(var name: String, var hp: Int) {
         // Die Damage(randomNumber) von den Bösewichten wird von den hp abgezogen
         hp -= damage
         if (hp <= 0) {
-            println("$name are Dead!")
+            println("||$name are Dead!")
         } else {
-            println("$name takes $damage damage. Remaining HP: $hp")
+            println("||$name takes $damage damage. Remaining HP: $hp")
         }
     }
 
     // Hier werden die HP zu dem passendem Heroes.Hero gedruckt
     open fun info() {
-        println("$name have $hp")
+        println("||$name have $hp")
     }
 }

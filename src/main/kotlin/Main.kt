@@ -59,9 +59,9 @@ fun main() {
 
     // Splitte den Text in Zeilen und gehe durch jede Zeile
     introText.lines().forEachIndexed { index, line ->
-        // Warte 2 Sekunde zwischen den Zeilen
+        // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(3000)
+            Thread.sleep(10)
         }
         // Drucke die Zeile und überschreibe sie mit \r
         print(line)
@@ -70,13 +70,23 @@ fun main() {
         }
     }
 
+    // Die Vorstellung
+    println("")
+    println(" ________________________________________________________________________________________________")
+    println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
     magician.introduceOneself()
     warrior.introduceOneself()
     kentaur.introduceOneself()
     satyr.putOut()
     zyklop.putOut()
 
+    // Erste auswahl
+    magician.putOut(satyr)
+    warrior.putOut(satyr)
+    kentaur.putOut(satyr)
+    satyr.attack(magician)
+    satyr.attack(warrior)
+    satyr.attack(kentaur)
+
+
 }
-
-
-//init hp undso
