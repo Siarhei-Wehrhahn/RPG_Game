@@ -1,10 +1,10 @@
 package Heroes
 
 import Villains.Villain
+import space
 
 open class Hero(var name: String, var hp: Int) {
 
-    val space = "|||||||||||||||||||||||||||||||||||||"
     var alive = true
 
     // Das ist die Tashe der helden
@@ -42,7 +42,7 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird erwähnt, wie der angriff war
         if (randomNumber == 0) {
-            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
             println("$space That was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
@@ -66,7 +66,7 @@ open class Hero(var name: String, var hp: Int) {
             // Wenn die hp voll sind, wird es anders ausgegeben als, wenn die nur gefüllt werden
             if (hp > MAX_HP) {
                 hp = MAX_HP
-                println("$space You reached the max hp!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+                println("$space You reached the max hp!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             } else{
                 println("$space $name heals for $healingAmount HP!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             }
@@ -82,7 +82,7 @@ open class Hero(var name: String, var hp: Int) {
             bag.remove("Protective Potion")
             isProtected = true
         } else {
-            println("$space $name cannot use a Protective Potion now.")
+            println("$space $name cannot use a Protective Potion now.\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
     }
 

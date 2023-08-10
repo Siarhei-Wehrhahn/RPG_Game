@@ -1,6 +1,7 @@
 package Villains
 
 import Heroes.Hero
+import space
 
 open class `Cyclop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
 
@@ -11,19 +12,19 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int): Villain(name, hp) {
     }
 
 
-    fun attack(){
+    fun attack(heroes: List<Hero>){
         var attacks: List<String> = listOf("evilAttack", "underUnderBoss", "stomper", "boulderHurl", "quakeCall", "fieryGaze", "chainBind", "wrathOfTheGods")
         var index = (0..7).random()
         var attackName = attacks[index]
         when (attackName){
-            "evilAttack" -> evilAttack(Hero(name, hp))
+            "evilAttack" -> evilAttack(heroes.random())
             "underUnderBoss" -> underUnderBoss()
-            "stomper" -> stomper(Hero(name, hp))
-            "boulderHurl" -> boulderHurl(Hero(name, hp))
-            "quakeCall" -> quakeCall(Hero(name, hp))
-            "fieryGaze" -> fieryGaze(Hero(name, hp))
-            "chainBind" -> chainBind(Hero(name, hp))
-            "wrathOfTheGods" -> wrathOfTheGods(Hero(name, hp))
+            "stomper" -> stomper(heroes.random())
+            "boulderHurl" -> boulderHurl(heroes.random())
+            "quakeCall" -> quakeCall(heroes.random())
+            "fieryGaze" -> fieryGaze(heroes.random())
+            "chainBind" -> chainBind(heroes.random())
+            "wrathOfTheGods" -> wrathOfTheGods(heroes.random())
         }
     }
 

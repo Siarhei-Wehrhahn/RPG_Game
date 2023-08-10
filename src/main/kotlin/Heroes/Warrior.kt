@@ -1,6 +1,7 @@
 package Heroes
 
 import Villains.Villain
+import space
 
 class Warrior(name: String, hp: Int): Hero(name, hp) {
 
@@ -18,7 +19,7 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
         println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         print("$space ")
-        var answere = readLine()?.lowercase()
+        val answere = readLine()?.lowercase()
         if ((answere == "attack") || (answere == "1")){
             attack(villain)
         } else if ((answere == "heal") || (answere == "2")) {
@@ -50,7 +51,7 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
             println("$space Good Attack!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 75)&&(randomNumber < 125)) {
-            println("$space Perfekt! That was strong.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+            println("$space Perfekt! That was strong.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if (randomNumber > 125) {
             println("$space Incredible!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         }

@@ -19,32 +19,8 @@ fun main() {
     val satyr = `Satyr(underboss)`("Panos", 500)
     val zyklop = `Cyclop(Final Boss)`("Aegon", 1000)
 
-    val space = "|||||||||||||||||||||||||||||||||||||"
 
-    // Unicode symbole
-    val pg = "\uD83D\uDCDC"
-    val star = "\u2B50"
-    val castle = "\uD83C\uDFF0"
-    val wizzard = "\uD83E\uDDD9"
-    val wr = "\uD83E\uDD81"
-    val kt = "\uD83E\uDD8C"
-    val styr = "\uD83E\uDD93"
-    val ccps = "\uD83D\uDC15"
-    val friendship = "\uD83E\uDD0E"
-    val power = "\uD83D\uDD25"
-    val attck = "\u2694"
-
-    // Farben
-    val x = "\u001B[0m";
-    val black = "\u001B[30m";
-    val red = "\u001B[31m";
-    val green = "\u001B[32m";
-    val yellow = "\u001B[33m";
-    val blue = "\u001B[34m";
-    val purple = "\u001B[35m";
-    val cyan = "\u001B[36m";
-    val white = "\u001B[37m"
-
+    // Text Quelle: Chat GPT
     val introText =
         """        
         $star $green Welcome to Legends of Mystica: Chronicles of the Enchanted Realms! $star
@@ -108,9 +84,13 @@ fun main() {
                             // Wenn Bösewicht besiegt ist print
                         } else if (hero.alive && !finalVillain.alive) {
                             println("${hero.name} defeated ${finalVillain.name}!")
-                            println("$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
-                                    "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
-                                    "$space and selflessness. May your name be forever anshrined in the chronicles of our history.\t\t$space")
+
+                            // Text von Chate GPT
+                            println(
+                                "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
+                                        "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
+                                        "$space and selflessness. May your name be forever anshrined in the chronicles of our history.\t\t$space"
+                            )
 
                             // Wenn Helden besiegt sind print
                         } else if (!hero.alive && finalVillain.alive) {
@@ -121,15 +101,16 @@ fun main() {
                 }
             }
         }
-
-        // Zuerst sind die Helden am zug danach hier die bösen bis einer tod ist
-        for (hero in heroes) {
-            if (firstVillain.alive && hero.alive) {
-                firstVillain.attack(hero)
-            } else if (!hero.alive && finalVillain.alive) {
-                println("$space ${finalVillain.name} defeated ${hero.name}!")
-                println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+    }
+    fun villainsTurn(heroes: List<Hero>, hero: Hero) {
+        if (firstVillain.alive && hero.alive) {
+            firstVillain.attack(heroes)
+        } else if (!hero.alive && finalVillain.alive) {
+            when(!hero.alive) {
+                hero.
             }
         }
     }
 }
+println("$space ${finalVillain.name} defeated ${heroes.name}!")
+println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
