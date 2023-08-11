@@ -42,7 +42,7 @@ open class Hero(var name: String, var hp: Int) {
 
         // Es wird erwähnt, wie der angriff war
         if (randomNumber == 0) {
-            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
             println("$space That was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
@@ -93,10 +93,10 @@ open class Hero(var name: String, var hp: Int) {
         // Die Damage(randomNumber) von den Bösewichten wird von den hp abgezogen
         hp -= damage
         if (hp <= 0) {
-            println("$space $name are Dead!")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name are Dead! $space")
             alive = false
         } else {
-            println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t  $name takes $damage damage. Remaining HP: $hp $space")
         }
     }
 

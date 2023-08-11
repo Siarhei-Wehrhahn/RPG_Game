@@ -45,7 +45,7 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
 
         // Hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
-            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
             println("$space That was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 25) && (randomNumber < 75)) {
@@ -55,6 +55,7 @@ class Warrior(name: String, hp: Int): Hero(name, hp) {
         } else if (randomNumber > 125) {
             println("$space Incredible!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     override fun heal(MAX_HP: Int) {

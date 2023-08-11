@@ -70,52 +70,46 @@ fun main() {
 
                 // Wenn heroes besiegt dan print
             } else if (!hero.alive && firstVillain.alive) {
-                println("${firstVillain.name} defeated ${hero.name}!")
+                println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ${firstVillain.name} defeated ${hero.name}!$space")
                 villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Wenn bösewicht besiegt dann zum endgegner weiter
-            } else if (hero.alive) {
-                println("${hero.name} defeated ${firstVillain.name}!")
-                hero.putOut(finalVillain)
-                villainsTurn(heroes, firstVillain, finalVillain)
-
-                // Solange alle am leben sind geht das spiel
-                while (heroes.all { it.alive } && finalVillain.alive) {
-                    for (hero in heroes) {
-                        if (hero.alive && finalVillain.alive) {
-                            hero.putOut(finalVillain)
-                            villainsTurn(heroes, firstVillain, finalVillain)
-
-                            // Wenn Bösewicht besiegt ist print
-                        } else if (hero.alive) {
-                            println("${hero.name} defeated ${finalVillain.name}!")
-
-                            // Text von Chat GPT
-                            println(
-                                "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
-                                        "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
-                                        "$space and selflessness. May your name be forever anshrined in the chronicles of our history.\t\t$space"
-                            )
-
-                            // Wenn Helden besiegt sind print
-                        } else if (finalVillain.alive) {
-                            println("$space ${finalVillain.name} defeated ${hero.name}!")
-                            println("Oh no, ${hero.name} is dead!")
-                            heroes.remove(hero)
-                        }
-                    }
-                }
+            } else if (hero.alive && !firstVillain.alive) {
+                break
             }
         }
     }
-}
-    fun villainsTurn(heroes: List<Hero>, firstVillain: Villain, finalVillain: Villain) {
-        if (firstVillain.alive && heroes.all { it.alive }) {
-            firstVillain.evilAttack(heroes.random())
-        } else if (!firstVillain.alive && heroes.all { it.alive }) {
-          finalVillain.evilAttack(heroes.random())
-        } else if (!heroes.all { it.alive } && firstVillain.alive) {
-            println("$space ${finalVillain.name} defeated all Heroes!")
-            println("Game Over!")
+
+    while (heroes.any { it.alive } && finalVillain.alive) {
+        for (hero in heroes) {
+            if (hero.alive && finalVillain.alive) {
+                hero.putOut(finalVillain)
+                villainsTurn(heroes, firstVillain, finalVillain)
+
+                // Wenn Bösewicht besiegt ist print
+            } else if (!finalVillain.alive) {
+                println("$space ${hero.name} defeated ${finalVillain.name}!")
+
+                // Text von Chat GPT
+                println(
+                    "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
+                            "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
+                            "$space and selflessness. May your name be forever anshrined in the chronicles of our history.\t\t$space"
+                )
+                break
+            }
         }
     }
+    if (heroes.all { !it.alive }) {
+        println("$space ${finalVillain.name} defeated all Heroes!")
+        println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+    }
+}
+
+fun villainsTurn(heroes: List<Hero>, firstVillain: Villain, finalVillain: Villain) {
+    if (firstVillain.alive && heroes.any { it.alive }) {
+        firstVillain.evilAttack(heroes.filter { it.alive }.random())
+    } else if (!firstVillain.alive && heroes.any { it.alive }) {
+        finalVillain.evilAttack(heroes.filter { it.alive }.random())
+    }
+}
