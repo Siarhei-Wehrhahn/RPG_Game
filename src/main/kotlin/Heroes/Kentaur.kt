@@ -1,6 +1,7 @@
 package Heroes
 
 import Villains.Villain
+import space
 
 class Kentaur(name: String, hp: Int): Hero(name, hp) {
 

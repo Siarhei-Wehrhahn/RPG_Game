@@ -1,6 +1,7 @@
 package Heroes
 
 import Villains.Villain
+import space
 
 class Magician(name: String, hp: Int): Hero(name, hp){           // Klasse angelegt Primärer konstruktor
 

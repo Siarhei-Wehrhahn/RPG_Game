@@ -11,6 +11,7 @@
 import Heroes.*
 import Villains.`Satyr(underboss)`
 import Villains.`Cyclop(Final Boss)`
+import Villains.Villain
 
 fun main() {
     val magician = Magician("Merlin", 300)
@@ -46,9 +47,9 @@ fun main() {
         }
     }
 
-    val heroes = listOf(magician, warrior, kentaur)
-    val firstVillain = satyr
-    val finalVillain = zyklop
+    var heroes = mutableListOf(magician, warrior, kentaur)
+    var firstVillain = satyr
+    var finalVillain = zyklop
 
     // Die Vorstellung
     println("")
@@ -61,31 +62,35 @@ fun main() {
     zyklop.putOut()
 
     // Solange alle am leben sind sollen die helden ihre züge machen danach die bösewichte
-    while (heroes.any { it.alive } && firstVillain.alive) {
+    while (heroes.all { it.alive } && firstVillain.alive) {
         for (hero in heroes) {
             if (hero.alive && firstVillain.alive) {
                 hero.putOut(firstVillain)
+                villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Wenn heroes besiegt dan print
             } else if (!hero.alive && firstVillain.alive) {
                 println("${firstVillain.name} defeated ${hero.name}!")
+                villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Wenn bösewicht besiegt dann zum endgegner weiter
-            } else if (hero.alive && !firstVillain.alive) {
+            } else if (hero.alive) {
                 println("${hero.name} defeated ${firstVillain.name}!")
                 hero.putOut(finalVillain)
+                villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Solange alle am leben sind geht das spiel
-                while (heroes.any { it.alive } && firstVillain.alive) {
+                while (heroes.all { it.alive } && finalVillain.alive) {
                     for (hero in heroes) {
                         if (hero.alive && finalVillain.alive) {
                             hero.putOut(finalVillain)
+                            villainsTurn(heroes, firstVillain, finalVillain)
 
                             // Wenn Bösewicht besiegt ist print
-                        } else if (hero.alive && !finalVillain.alive) {
+                        } else if (hero.alive) {
                             println("${hero.name} defeated ${finalVillain.name}!")
 
-                            // Text von Chate GPT
+                            // Text von Chat GPT
                             println(
                                 "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
                                         "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
@@ -93,24 +98,24 @@ fun main() {
                             )
 
                             // Wenn Helden besiegt sind print
-                        } else if (!hero.alive && finalVillain.alive) {
+                        } else if (finalVillain.alive) {
                             println("$space ${finalVillain.name} defeated ${hero.name}!")
-                            println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+                            println("Oh no, ${hero.name} is dead!")
+                            heroes.remove(hero)
                         }
                     }
                 }
             }
         }
     }
-    fun villainsTurn(heroes: List<Hero>, hero: Hero) {
-        if (firstVillain.alive && hero.alive) {
-            firstVillain.attack(heroes)
-        } else if (!hero.alive && finalVillain.alive) {
-            when(!hero.alive) {
-                hero.
-            }
+}
+    fun villainsTurn(heroes: List<Hero>, firstVillain: Villain, finalVillain: Villain) {
+        if (firstVillain.alive && heroes.all { it.alive }) {
+            firstVillain.evilAttack(heroes.random())
+        } else if (!firstVillain.alive && heroes.all { it.alive }) {
+          finalVillain.evilAttack(heroes.random())
+        } else if (!heroes.all { it.alive } && firstVillain.alive) {
+            println("$space ${finalVillain.name} defeated all Heroes!")
+            println("Game Over!")
         }
     }
-}
-println("$space ${finalVillain.name} defeated ${heroes.name}!")
-println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
