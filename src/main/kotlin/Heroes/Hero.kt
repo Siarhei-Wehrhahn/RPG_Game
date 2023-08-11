@@ -50,6 +50,7 @@ open class Hero(var name: String, var hp: Int) {
         } else if (randomNumber > 75) {
             println("$space Perfekt! That was strong.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Heilungsfunktion die 150HP wieder auffüllt
@@ -93,6 +94,7 @@ open class Hero(var name: String, var hp: Int) {
         hp -= damage
         if (hp <= 0) {
             println("$space $name are Dead!")
+            alive = false
         } else {
             println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }

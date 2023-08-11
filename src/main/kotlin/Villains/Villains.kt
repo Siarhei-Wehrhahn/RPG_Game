@@ -11,6 +11,7 @@ open class Villain(var name: String, var hp: Int) {
         hp -= damage
         if (hp <= 0) {
             println("$space $name are dead.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            alive = false
         } else {
             println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
@@ -22,14 +23,15 @@ open class Villain(var name: String, var hp: Int) {
         hero.takeDamage(randomNumber)
         println("$space $name attacks ${hero.name} for $randomNumber damage!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         if (randomNumber == 0) {
-            println("$space $name's attack missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+            println("$space $name's attack missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
-            println("$space $name's attack was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+            println("$space $name's attack was weak!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
-            println("$space $name's attack was good!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space $name's attack was good!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         } else if (randomNumber > 100) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Es wird ein helfer gerufen der schutz bietet und angreift
@@ -53,6 +55,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 100) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Wirft großen stein auf seine gegner
@@ -70,6 +73,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 130) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Durch schlag auf boden, entsteht ein Erbeben was einen größeren Schaden anrichtet wie stomper()
@@ -87,6 +91,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 100) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Auge schießt feurige Energie, die bei kontakt zu verbrennungen führt
@@ -104,6 +109,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 150) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Zyklop fesselt die gegner während er sich auf eine andere fähigkeit konzentriert (Helden setzen 1 runde aus)
@@ -127,6 +133,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 350) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Angriffe für den Satyr
@@ -145,6 +152,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 40) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Flötenzauber raubt die lebensenergie
@@ -162,6 +170,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 30) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Waldes fluch entfesselt einen fluch, der Pflanzen und Tiere auf die Feine losgehen lässt
@@ -179,6 +188,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 65) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Panischer schrei versetzt Furcht und Panik in die Herzen der Gegner
@@ -196,6 +206,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 20) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Äther beschwörung bring Kräfte aus anderen Dimmensionen zum Satyr
@@ -213,6 +224,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 35) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Satyrischer Sturm beschwört einen Sturm herbei, der alle gegner wegfegt
@@ -230,6 +242,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if (randomNumber > 50) {
             println("$space $name's attack was strong!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     open fun info() {
