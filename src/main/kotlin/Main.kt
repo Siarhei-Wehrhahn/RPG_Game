@@ -14,7 +14,7 @@ fun main() {
 
     // Der Nachfolgende Text ist von Chat GPT und der code für die rainbow Farbe habe ich auch dort abgeschrieben
     val winningText =
-        "Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
+        "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
                 "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
                 "$space and selflessness. May your name be forever anshrined in the chronicles of our history."
 
@@ -81,7 +81,7 @@ fun main() {
     zyklop.putOut()
 
     // Solange alle am leben sind sollen die helden ihre züge machen danach die bösewichte
-    while (heroes.all { it.alive } && firstVillain.alive) {
+    while (heroes.any { it.alive } && firstVillain.alive) {
         for (hero in heroes) {
             if (hero.alive && firstVillain.alive) {
                 hero.putOut(firstVillain)
@@ -98,6 +98,12 @@ fun main() {
             }
         }
     }
+
+    println("$space Congratulations! You have defeated the satyr and discovered 500 gold coins in his pockets")
+    println("$space Thanks to you, we are now safe and we gift you a Healing Potion as a token of our gratitude")
+
+    bag.add("Healing Potion")
+    // Geldeingang aufs konto
 
     while (heroes.any { it.alive } && finalVillain.alive) {
         for (hero in heroes) {

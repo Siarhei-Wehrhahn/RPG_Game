@@ -5,7 +5,6 @@ import space
 
 class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse angelegt Primärer konstruktor
 
-    var isProtected = false
     private var MAX_HP = 300                                                    //HP wurde festgelegt
 
     fun introduceOneself() {
@@ -36,7 +35,7 @@ class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse ang
             useProtectivePotion(villain)
         } else if ((answere == "use vitamins") || (answere == "4")) {
             takeVitamins(villain)
-        } else if (answere == null) {
+        } else if (answere == "") {
             println("Ungültige eingabe!")
             putOut(villain)
         }

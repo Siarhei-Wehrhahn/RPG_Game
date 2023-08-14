@@ -30,7 +30,7 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
             useProtectivePotion(villain)
         } else if ((answere == "use vitamins") || (answere == "4")) {
             takeVitamins(villain)
-        } else if (answere == null) {
+        } else if (answere == "") {
             println("Ungültige eingabe!")
             putOut(villain)
         }

@@ -1,26 +1,16 @@
 package Heroes
 
 import Villains.Villain
+import bag
 import space
 
 open class Hero(var name: String, var hp: Int) {
 
     var alive = true
-
-    // Das ist die Tashe der helden
-    var bag: MutableList<String> = mutableListOf(
-        "Healing Potion",
-        "Healing Potion",
-        "Healing Potion",
-        "Healing Potion",
-        "Vitamins",
-        "Protective Potion",
-        "Protective Potion",
-        "Protective Potion"
-    )
+    var gold = 0
 
     // Hier wir festgelegt, ob er gerade geschützt ist oder nicht
-    private var isProtected: Boolean = false
+    var isProtected: Boolean = false
     var isOnVitamine: Boolean = false
 
     open fun putOut(villain: Villain) {
@@ -30,6 +20,7 @@ open class Hero(var name: String, var hp: Int) {
         println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 4. Use Vitamine\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 5. Open shop\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
 
         // Hier wird die antwort erwartet, die auf 95 zeichen begrenzt wurde, aus optischen gründen
         print("$space ")
@@ -43,7 +34,7 @@ open class Hero(var name: String, var hp: Int) {
 
         // Wenn er auf vitaminen ist dann, bekommt er 10 % mehr stärke
         if (isOnVitamine) {
-            randomNumber *= 1.1.toInt()
+            randomNumber = (randomNumber * 1.1).toInt()
         }
         Thread.sleep(2000)
 
@@ -113,10 +104,14 @@ open class Hero(var name: String, var hp: Int) {
             println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
             Thread.sleep(2500)
             putOut(villain)
-        } else {
+        } else if (isOnVitamine) {
             println("$space You are on Vitamins, when u take more u will die!\t\t\t\t\t\t\t\t\t\t\t\t$space")
             println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
             Thread.sleep(2500)
+            putOut(villain)
+        } else if (!bag.contains("Vitamins")) {
+            println("$space You don't have Vitamins!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
             putOut(villain)
         }
     }
@@ -136,12 +131,12 @@ open class Hero(var name: String, var hp: Int) {
             }
         } else {
             Thread.sleep(2000)
-            println("Your have reached nothing, because $name used protective spell!")
+            println("$space Your have reached nothing, because $name used protective spell!\t\t\t\t\t\t\t$space")
             isProtected = false
         }
     }
 
-    open fun allTakeDamage(heroes: List<Hero>, damage: Int){
+    open fun allTakeDamage(heroes: List<Hero>, damage: Int) {
         for (hero in heroes) {
             hero.hp -= damage
             if (hp <= 0) {
@@ -154,9 +149,40 @@ open class Hero(var name: String, var hp: Int) {
         }
     }
 
+    open fun shop(){
+        println("Welcome to the shop!")
+        println("What do you want to buy?")
+        println("In our assortment we have:" +
+                "$space 1. Vitamins 500 Gold $space" +
+                "$space 2. Protective Potion 300 Gold $space" +
+                "$space 3. Healing Potion 250 Gold $space")
+        var buy = readln().lowercase()
+        if (buy == "Vitamins" || buy == "1" && gold >= 500) {
+            gold -= 500
+            bag.add("Vitamins")
+            println("$space Your purchase was successful!")
+            println("$space +1 Vitamins")
+        } else if (buy == "Protective Potion" || buy == "2" && gold >= 300) {
+            gold -= 300
+            bag.add("Protective Potion")
+            println("$space Your purchase was successful!")
+            println("$space +1 Protective Potion")
+        } else if (buy == "Healing Potion" || buy == "3" && gold >= 250) {
+            gold -= 250
+            bag.add("Healing Potion")
+            println("$space Your purchase was successful!")
+            println("$space +1 PHealing Potion")
+        }
+
+    }
+
     // Hier werden die HP zu dem passendem Heroes.Hero gedruckt
     open fun info() {
         println("$space $name have $hp")
+    }
+
+    open fun fillHp(heroes: List<Hero>) {
+        hp += 400
     }
 
     open fun isAlive() {
