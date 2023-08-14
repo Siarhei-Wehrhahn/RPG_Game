@@ -9,18 +9,40 @@
 // * =========================================================
 
 import Heroes.*
-import Villains.`Satyr(underboss)`
-import Villains.`Cyclop(Final Boss)`
 import Villains.Villain
-
 fun main() {
-    val magician = Magician("Merlin", 300)
-    val warrior = Warrior("Arthur", 400)
-    val kentaur = Kentaur("Cyrus", 350)
-    val satyr = `Satyr(underboss)`("Panos", 500)
-    val zyklop = `Cyclop(Final Boss)`("Aegon", 1000)
 
+    // Der Nachfolgende Text ist von Chat GPT und der code für die rainbow Farbe habe ich auch dort abgeschrieben
+    val winningText =
+        "Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
+                "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
+                "$space and selflessness. May your name be forever anshrined in the chronicles of our history."
 
+    val rainbowColors = listOf(black, red, green, yellow, blue, purple, cyan, white, magenta)
+
+    // Hier kommt der text kombiniert mit der Farbe rein
+    var rainbowText = ""
+
+    // In der schleife wir buchstabe für buchstabe genommen und mit einer Farbe kombiniert und speichert jeden buchstaben und index in der zeichenkette
+    for ((index, char) in winningText.withIndex()) {
+
+        // rainbowColors-Liste ausgewählt, index des buchstaben wird durch die anzahl der farben geteilt damit alle farben zyklisch durchlaufen
+        val color = rainbowColors[index % rainbowColors.size]
+        rainbowText += "$color$char$x"
+    }
+
+    val titel =
+        "                 _                              _              __   __  __           _   _                                                                        \n" +
+                "                | |    ___  __ _  ___ _ __   __| |___    ___  / _| |  \\/  |_   _ ___| |_(_) ___ ___                                                               \n" +
+                "                | |   / _ \\/ _` |/ _ | '_ \\ / _` / __|  / _ \\| |_  | |\\/| | | | / __| __| |/ __/ __|                                                              \n" +
+                "                | |__|  __| (_| |  __| | | | (_| \\__ \\ | (_) |  _| | |  | | |_| \\__ | |_| | (__\\__ \\                                                              \n" +
+                "                |_____\\___|\\__, |\\___|_| |_|\\__,_|___/  \\___/|_|   |_|  |_|\\__, |___/\\__|_|\\___|___/                                                              \n" +
+                "   ____ _                  |___/     _                   __   _   _        |________            _                 _           _   ____            _               \n" +
+                "  / ___| |__  _ __ ___  _ __ (_) ___| | ___ ___    ___  / _| | |_| |__   ___  | ____|_ __   ___| |__   __ _ _ __ | |_ ___  __| | |  _ \\ ___  __ _| |_ __ ___  ___ \n" +
+                " | |   | '_ \\| '__/ _ \\| '_ \\| |/ __| |/ _ / __|  / _ \\| |_  | __| '_ \\ / _ \\ |  _| | '_ \\ / __| '_ \\ / _` | '_ \\| __/ _ \\/ _` | | |_) / _ \\/ _` | | '_ ` _ \\/ __|\n" +
+                " | |___| | | | | | (_) | | | | | (__| |  __\\__ \\ | (_) |  _| | |_| | | |  __/ | |___| | | | (__| | | | (_| | | | | ||  __| (_| | |  _ |  __| (_| | | | | | | \\__ \\\n" +
+                "  \\____|_| |_|_|  \\___/|_| |_|_|\\___|_|\\___|___/  \\___/|_|    \\__|_| |_|\\___| |_____|_| |_|\\___|_| |_|\\__,_|_| |_|\\__\\___|\\__,_| |_| \\_\\___|\\__,_|_|_| |_| |_|___/\n" +
+                "                                                                                                                                                                  \n"
     // Text Quelle: Chat GPT
     val introText =
         """        
@@ -28,31 +50,28 @@ fun main() {
         $wizzard Step into a World of wonder and magic as you embark on an epic journey in 'Legends of Mystica'! $wizzard 
         $wr $kt Prepare to be captivated by a realm brimming with ancient mysteries, fantastical creatures, and untold adventures. $styr $ccps 
         $friendship Your destiny awaits as you immerse yourself in a narrative that weaves together courage, friendship, and the boundless power of imagination. $power 
-        $pg Are you ready to explore the realms of Mystica and etch your own legend in its chronicles? $pg $x
+        $pergament Are you ready to explore the realms of Mystica and etch your own legend in its chronicles? $pergament $x
         $castle $red Your castle is under attack! $attck 
-        $pg You must help us defend it. $pg 
-        $pg What should we do? We await your orders $pg $x
+        $pergament You must help us defend it. $pergament 
+        $pergament What should we do? We await your orders $pergament $x
         """
+    println("")
+    println(titel)
 
     // Splitte den Text in Zeilen und gehe durch jede Zeile
     introText.lines().forEachIndexed { index, line ->
         // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(10)
+            Thread.sleep(20)
         }
         // Drucke die Zeile und überschreibe sie mit \r
-        print(line)
+        println(line)
         if (index < introText.lines().size - 1) {
             print("\r")
         }
     }
 
-    var heroes = mutableListOf(magician, warrior, kentaur)
-    var firstVillain = satyr
-    var finalVillain = zyklop
-
     // Die Vorstellung
-    println("")
     println(" _______________________________________________________________________________________________________________________________________________________________________")
     println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
     magician.introduceOneself()
@@ -89,20 +108,16 @@ fun main() {
                 // Wenn Bösewicht besiegt ist print
             } else if (!finalVillain.alive) {
                 println("$space ${hero.name} defeated ${finalVillain.name}!")
-
-                // Text von Chat GPT
-                println(
-                    "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
-                            "$space and determination have spared  us from disaster. We are profoundly grateful for your bravery" +
-                            "$space and selflessness. May your name be forever anshrined in the chronicles of our history.\t\t$space"
-                )
+                println("$space ")
+                print(rainbowText)
+                print("\t\t$space")
                 break
             }
         }
     }
     if (heroes.all { !it.alive }) {
         println("$space ${finalVillain.name} defeated all Heroes!")
-        println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Game Over!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+        println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||${red}Game Over$x!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
     }
 }
 
