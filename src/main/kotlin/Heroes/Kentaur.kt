@@ -5,7 +5,7 @@ import space
 
 class Kentaur(name: String, hp: Int) : Hero(name, hp) {
 
-    private val MAX_HP = 500
+    override var MAX_HP = 500
 
     fun introduceOneself() {
         Thread.sleep(2500)
@@ -17,19 +17,14 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
     override fun putOut(villain: Villain) {
         super.putOut(villain)
         val answere = readlnOrNull()?.lowercase()
-        if ((answere == "attack") || (answere == "1")) {
-            attack(villain)
-        } else if ((answere == "heal") || (answere == "2")) {
-            heal(MAX_HP, villain)
-        } else if ((answere == "use protective spell") || (answere == "3")) {
-            useProtectivePotion(villain)
-        } else if ((answere == "use vitamins") || (answere == "4")) {
-            takeVitamins(villain)
-        } else if (answere == "open shop" || answere == "5") {
-            shop(villain)
-        } else {
-            println("$space Invalid input!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-            putOut(villain)
+        when (answere) {
+            "attack", "1" -> attack(villain)
+            "bag", "2" -> openBag(villain) // Neue Funktion für die Tasche
+            "open shop", "3" -> shop(villain)
+            else -> {
+                println("$space Invalid input!")
+                putOut(villain)
+            }
         }
     }
 
@@ -58,13 +53,4 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
     override fun openBag(villain: Villain) {
         super.openBag(villain)
     }
-
-    override fun info() {
-        super.info()
-    }
-
-    override fun isAlive() {
-        super.isAlive()
-    }
-
 }

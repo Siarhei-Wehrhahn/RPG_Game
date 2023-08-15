@@ -1,6 +1,7 @@
 package Heroes
 
 import Villains.Villain
+import bag
 import space
 
 open class Hero(var name: String, var hp: Int) {
@@ -138,32 +139,22 @@ open class Hero(var name: String, var hp: Int) {
         for (hero in heroes) {
             hero.hp -= damage
             if (hp <= 0) {
-                println("$space *********$name are dead \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+                println("$space *********$heroes are dead \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
 
                 alive = false
             } else {
-                println("$space **********$name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+                println("$space **********$heroes takes $damage damage.\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             }
         }
     }
 
     // Das ist die Tashe der helden
     open fun openBag(villain: Villain) {
-        var bag: MutableList<String> = mutableListOf(
-            "Healing Potion",
-            "Healing Potion",
-            "Healing Potion",
-            "Healing Potion",
-            "Vitamins",
-            "Protective Potion",
-            "Protective Potion",
-            "Protective Potion"
-        )
-        println("You have open your bag")
-        println("Lets s what do u have in there!")
+        println("$space You have open your bag")
+        println("$space Lets see what do u have in there!")
         Thread.sleep(3500)
         println(bag)
-        println("Do you want to take something out?")
+        println("$space Do you want to take something out?")
         var answered = readln().lowercase()
         when (answered) {
             "heal", "1" -> heal(MAX_HP, villain)
@@ -174,17 +165,20 @@ open class Hero(var name: String, var hp: Int) {
                 println("$space Invalid input!")
                 openBag(villain)
             }
-}
+        }
+    }
 
 
-    open fun shop(villain: Villain){
+    open fun shop(villain: Villain) {
         println("$space Welcome to the shop!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space What do you want to buy?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        println("$space In our assortment we have:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
-                "\n$space 1. Vitamins 500 Gold\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
-                "\n$space 2. Protective Potion 300 Gold \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
-                "\n$space 3. Healing Potion 250 Gold \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
-                "\n$space 4. Exit")
+        println(
+            "$space In our assortment we have:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
+                    "\n$space 1. Vitamins 500 Gold\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
+                    "\n$space 2. Protective Potion 300 Gold \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
+                    "\n$space 3. Healing Potion 250 Gold \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space" +
+                    "\n$space 4. Exit"
+        )
         print("$space ")
         var buy = readln().lowercase()
         if (buy == "vitamins" || buy == "1" && gold >= 500) {
@@ -211,24 +205,5 @@ open class Hero(var name: String, var hp: Int) {
             println("Invalid input")
             shop(villain)
         }
-
     }
-
-    // Hier werden die HP zu dem passendem Heroes.Hero gedruckt
-    open fun info() {
-        println("$space $name have $hp")
-    }
-
-    open fun fillHp(heroes: List<Hero>) {
-        hp += 400
-    }
-
-    open fun isAlive() {
-        if (hp > 0) {
-            alive = true
-        } else {
-            alive = false
-        }
-    }
-
 }
