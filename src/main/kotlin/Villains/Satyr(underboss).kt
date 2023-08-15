@@ -21,7 +21,7 @@ open class `Satyr(underboss)`(name: String, hp: Int) : Villain(name, hp) {
             "aetherConjuring",
             "satyricTempest"
         )
-        var index = 5
+        var index = (0..5).random()
         var attackName = attacks[index]
         when (attackName) {
             "doubleHoofStrike" -> doubleHoofStrike(heroes.random())

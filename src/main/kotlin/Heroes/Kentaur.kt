@@ -14,16 +14,15 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
-    override fun putOut(villain: Villain) {
-        super.putOut(villain)
-        val answere = readlnOrNull()?.lowercase()
-        when (answere) {
+    override fun putOut(MAX_HP: Int, villain: Villain) {
+        super.putOut(MAX_HP,villain)
+        when (readlnOrNull()?.lowercase()) {
             "attack", "1" -> attack(villain)
-            "bag", "2" -> openBag(villain) // Neue Funktion für die Tasche
+            "bag", "2" -> openBag(MAX_HP, villain) // Neue Funktion für die Tasche
             "open shop", "3" -> shop(villain)
             else -> {
                 println("$space Invalid input!")
-                putOut(villain)
+                putOut(MAX_HP,villain)
             }
         }
     }
@@ -50,7 +49,11 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
         super.allTakeDamage(heroes, damage)
     }
 
-    override fun openBag(villain: Villain) {
-        super.openBag(villain)
+    override fun openBag(MAX_HP: Int, villain: Villain) {
+        super.openBag(MAX_HP, villain)
+    }
+
+    override fun shop(villain: Villain) {
+        super.shop(villain)
     }
 }

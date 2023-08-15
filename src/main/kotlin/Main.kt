@@ -84,7 +84,7 @@ fun main() {
     while (heroes.any { it.alive } && firstVillain.alive) {
         for (hero in heroes) {
             if (hero.alive && firstVillain.alive) {
-                hero.putOut(firstVillain)
+                hero.putOut(hero.MAX_HP, firstVillain)
                 villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Wenn heroes besiegt dan print
@@ -108,7 +108,7 @@ fun main() {
     while (heroes.any { it.alive } && finalVillain.alive) {
         for (hero in heroes) {
             if (hero.alive && finalVillain.alive) {
-                hero.putOut(finalVillain)
+                hero.putOut(hero.MAX_HP, finalVillain)
                 villainsTurn(heroes, firstVillain, finalVillain)
 
                 // Wenn Bösewicht besiegt ist print

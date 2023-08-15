@@ -7,20 +7,17 @@ import space
 open class Hero(var name: String, var hp: Int) {
 
     var alive = true
-    var gold = 0
+    var gold = 5000
 
     // Hier wir festgelegt, ob er gerade geschützt ist oder nicht
     var isProtected: Boolean = false
     var isOnVitamine: Boolean = false
     open var MAX_HP = 0
 
-    open fun putOut(villain: Villain) {
+    open fun putOut(MAX_HP: Int, villain: Villain) {
         // Hier kann der spieler seine handlung bestimmen ob
         println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        //println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        //println("$space 3. Use Protective Spell")
-        //println("$space 4. Use Vitamine\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 2. Bag\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space") // Neue Option für die Tasche
         println("$space 3. Open shop\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         print("$space ")
@@ -73,7 +70,7 @@ open class Hero(var name: String, var hp: Int) {
 
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
-        putOut(villain)
+        putOut(MAX_HP, villain)
     }
 
     // Hier wird ein zaubertrank für den schutz getrunken
@@ -89,7 +86,7 @@ open class Hero(var name: String, var hp: Int) {
             println("$space $name cannot use a Protective Potion now.\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
-        putOut(villain)
+        putOut(MAX_HP, villain)
     }
 
     open fun takeVitamins(villain: Villain) {
@@ -102,16 +99,16 @@ open class Hero(var name: String, var hp: Int) {
             bag.remove("Vitamins")
             println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
             Thread.sleep(2500)
-            putOut(villain)
+            putOut(MAX_HP, villain)
         } else if (isOnVitamine) {
             println("$space You are on Vitamins, when u take more u will die!\t\t\t\t\t\t\t\t\t\t\t\t$space")
             println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
             Thread.sleep(2500)
-            putOut(villain)
+            putOut(MAX_HP, villain)
         } else if (!bag.contains("Vitamins")) {
             println("$space You don't have Vitamins!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
-            putOut(villain)
+            putOut(MAX_HP, villain)
         }
     }
 
@@ -149,23 +146,30 @@ open class Hero(var name: String, var hp: Int) {
     }
 
     // Das ist die Tashe der helden
-    open fun openBag(villain: Villain) {
-        println("$space You have open your bag")
-        println("$space Lets see what do u have in there!")
+    open fun openBag(MAX_HP: Int, villain: Villain) {
+        println("$space You have open your bag\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space Lets see what do u have in there!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         Thread.sleep(3500)
-        println("$space $bag $space")
-        println("$space Do you want to take something out?")
+        println("|||||||||||||||||||$bag|||||||||||||||||||")
+        println("$space Do you want to take something out?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 1. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 2. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 3. Use Vitamine\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        print("$space ")
         var answered = readln().lowercase()
-        when (answered) {
-            "heal", "1" -> heal(MAX_HP, villain)
-            "use protective spell", "2" -> useProtectivePotion(villain)
-            "use vitamins", "3" -> takeVitamins(villain)
-            "go back", "4" -> putOut(villain) // Zurück zur Hauptauswahl
-            else -> {
-                println("$space Invalid input! $space")
-                openBag(villain)
-            }
+        if ((answered == "heal" || answered == "1") && bag.contains("Healing Potion")) {
+            heal(MAX_HP, villain)
+        } else if ((answered == "use protective spell" || answered == "2") && bag.contains("Protective Potion")) {
+            useProtectivePotion(villain)
+        } else if ((answered == "use vitamins" || answered == "3") && bag.contains("Vitamins")) {
+            takeVitamins(villain)
+        } else if (answered == "exit" || answered == "4") {
+            putOut(MAX_HP, villain)
+        } else {
+            println("$space Invalid input!")
+            openBag(MAX_HP, villain)
         }
+
     }
 
 
@@ -181,29 +185,32 @@ open class Hero(var name: String, var hp: Int) {
                     "\n$space 4. Exit\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space"
         )
         print("$space ")
-        var buy = readln().lowercase()
-        if (buy == "vitamins" || buy == "1" && gold >= 500) {
+        val buy = readln().lowercase()
+        if ((buy == "vitamins" || buy == "1") && gold >= 500) {
             gold -= 500
             bag.add("Vitamins")
-            println("$space Your purchase was successful! $space")
-            println("$space +1 Vitamins $space")
+            println("$space Your purchase was successful!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space +1 Vitamins\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
-        } else if (buy == "protective potion" || buy == "2" && gold >= 300) {
+        } else if ((buy == "protective potion" || buy == "2") && gold >= 300) {
             gold -= 300
             bag.add("Protective Potion")
-            println("$space Your purchase was successful! $space")
-            println("$space +1 Protective Potion $space")
+            println("$space Your purchase was successful!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space +1 Protective Potion\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
-        } else if (buy == "healing potion" || buy == "3" && gold >= 250) {
+        } else if ((buy == "healing potion" || buy == "3") && gold >= 250) {
             gold -= 250
             bag.add("Healing Potion")
-            println("$space Your purchase was successful! $space")
-            println("$space +1 PHealing Potion $space")
+            println("$space Your purchase was successful!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            println("$space +1 Healing Potion\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
-        } else if (buy == "exit") {
-            putOut(villain)
+        } else if (buy == "exit" || buy == "4") {
+            putOut(MAX_HP,villain)
+        } else if (gold < 250) {
+            println("$space Sorry, you don't have enough money.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            shop(villain)
         } else {
-            println("$space Invalid input $space")
+            println("$space Invalid input\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
         }
     }
