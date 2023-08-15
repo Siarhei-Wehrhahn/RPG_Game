@@ -1,6 +1,7 @@
 package Villains
 
 import Heroes.Hero
+import heroes
 import space
 
 open class `Cyclop(Final Boss)`(name: String, hp: Int) : Villain(name, hp) {
@@ -13,7 +14,7 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int) : Villain(name, hp) {
     }
 
 
-    override fun attack(heroes: MutableList<Hero>) {
+    override fun attack(hero: Hero) {
         var attacks: List<String> = listOf(
             "evilAttack",
             "underUnderBoss",
