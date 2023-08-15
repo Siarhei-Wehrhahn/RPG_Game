@@ -36,27 +36,5 @@ class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse ang
         super.attack(villain)
     }
 
-    override fun heal(MAX_HP: Int, villain: Villain) {
-        super.heal(MAX_HP, villain)
-    }
 
-    override fun useProtectivePotion(villain: Villain) {
-        super.useProtectivePotion(villain)
-    }
-
-    override fun takeDamage(damage: Int) {
-        super.takeDamage(damage)
-    }
-
-    override fun allTakeDamage(heroes: List<Hero>, damage: Int) {
-        super.allTakeDamage(heroes, damage)
-    }
-
-    override fun openBag(MAX_HP: Int, villain: Villain) {
-        super.openBag(MAX_HP, villain)
-    }
-
-    override fun shop(villain: Villain) {
-        super.shop(villain)
-    }
 }

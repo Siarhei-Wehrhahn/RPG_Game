@@ -10,6 +10,7 @@
 
 import Heroes.*
 import Villains.Villain
+
 fun main() {
 
     // Der Nachfolgende Text ist von Chat GPT und der code für die rainbow Farbe habe ich auch dort abgeschrieben
@@ -62,7 +63,7 @@ fun main() {
     introText.lines().forEachIndexed { index, line ->
         // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(20)
+            Thread.sleep(2000)
         }
         // Drucke die Zeile und überschreibe sie mit \r
         println(line)
@@ -80,7 +81,7 @@ fun main() {
     satyr.putOut()
     zyklop.putOut()
 
-    // Solange alle am leben sind sollen die helden ihre züge machen danach die bösewichte
+    // Solange alle am leben sind sollen die helden ihre züge machen danach die bösewichte (erster gegner)
     while (heroes.any { it.alive } && firstVillain.alive) {
         for (hero in heroes) {
             if (hero.alive && firstVillain.alive) {
@@ -99,11 +100,8 @@ fun main() {
         }
     }
 
-    println("$space Congratulations! You have defeated the satyr and discovered 500 gold coins in his pockets")
-    println("$space Thanks to you, we are now safe and we gift you a Healing Potion as a token of our gratitude")
+    surprise(heroes)
 
-    bag.add("Healing Potion")
-    // Geldeingang aufs konto
 
     while (heroes.any { it.alive } && finalVillain.alive) {
         for (hero in heroes) {
@@ -133,4 +131,25 @@ fun villainsTurn(heroes: MutableList<Hero>, firstVillain: Villain, finalVillain:
     } else if (!firstVillain.alive && heroes.any { it.alive }) {
         finalVillain.attack(heroes.filter { it.alive }.random())
     }
+}
+
+fun surprise(hero: MutableList<Hero>) {
+    println("$space Congratulations! You have defeated the satyr and discovered 500 gold coins in his pockets $space")
+
+    // Füge das Gold  hinzu
+    gold += 500
+
+    println("$space +500 Gold for each Hero")
+
+    // Heile alle Helden auf volle Gesundheit
+    for (hero in heroes) {
+        hero.hp = hero.MAX_HP
+    }
+    println("$space All Heroes are fully healed!")
+
+    println("$space Thanks to you, we are now safe and we gift you a Healing Potion as a token of our gratitude $space")
+    bag.add("Healing Potion")
+    println("$space +Healing Potion")
+
+    println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
 }

@@ -42,6 +42,9 @@ var heroes = mutableListOf(magician, warrior, kentaur)
 var firstVillain = satyr
 var finalVillain = zyklop
 
+
+var gold = 0
+
 var bag: MutableList<String> = mutableListOf(
     "Healing Potion",
     "Healing Potion",

@@ -2,12 +2,12 @@ package Heroes
 
 import Villains.Villain
 import bag
+import gold
 import space
 
 open class Hero(var name: String, var hp: Int) {
 
     var alive = true
-    var gold = 5000
 
     // Hier wir festgelegt, ob er gerade geschützt ist oder nicht
     var isProtected: Boolean = false
@@ -213,5 +213,12 @@ open class Hero(var name: String, var hp: Int) {
             println("$space Invalid input\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
         }
+    }
+
+    fun status(){
+        println("$space ╔════════════════════════════════════════╗")
+        println("$space ║ Health: $hp / $MAX_HP                  ║")
+        println("$space ║ Gold: $gold                            ║")
+        println("$space ╚════════════════════════════════════════╝")
     }
 }

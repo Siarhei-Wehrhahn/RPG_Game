@@ -57,23 +57,7 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
-    override fun heal(MAX_HP: Int, villain: Villain) {
-        super.heal(MAX_HP, villain)
-    }
 
-    override fun useProtectivePotion(villain: Villain) {
-        super.useProtectivePotion(villain)
-    }
 
-    override fun takeDamage(damage: Int) {
-        super.takeDamage(damage)
-    }
 
-    override fun allTakeDamage(heroes: List<Hero>, damage: Int) {
-        super.allTakeDamage(heroes, damage)
-    }
-
-    override fun openBag(MAX_HP: Int, villain: Villain) {
-        super.openBag(MAX_HP, villain)
-    }
 }
