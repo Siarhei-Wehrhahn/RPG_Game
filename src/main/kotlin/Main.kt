@@ -127,10 +127,10 @@ fun main() {
     }
 }
 
-fun villainsTurn(heroes: List<Hero>, firstVillain: Villain, finalVillain: Villain) {
+fun villainsTurn(heroes: MutableList<Hero>, firstVillain: Villain, finalVillain: Villain) {
     if (firstVillain.alive && heroes.any { it.alive }) {
-        firstVillain.evilAttack(heroes.filter { it.alive }.random())
+        firstVillain.attack(heroes.filter { it.alive }.random())
     } else if (!firstVillain.alive && heroes.any { it.alive }) {
-        finalVillain.evilAttack(heroes.filter { it.alive }.random())
+        finalVillain.attack(heroes.filter { it.alive }.random())
     }
 }

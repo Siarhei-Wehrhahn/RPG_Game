@@ -13,7 +13,7 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int) : Villain(name, hp) {
     }
 
 
-    fun attack(heroes: List<Hero>) {
+    override fun attack(heroes: MutableList<Hero>) {
         var attacks: List<String> = listOf(
             "evilAttack",
             "underUnderBoss",

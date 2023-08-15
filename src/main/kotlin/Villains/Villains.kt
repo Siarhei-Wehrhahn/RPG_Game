@@ -21,6 +21,24 @@ open class Villain(var name: String, var hp: Int) {
         }
     }
 
+    open fun attack(hero: Hero){
+        if (!hero.isProtected) {
+            val randomNumber: Int = (0..150).random()
+            hero.takeDamage(randomNumber)
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
+            if (randomNumber == 0) {
+                println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
+            } else if ((randomNumber > 1) && (randomNumber < 50)) {
+                println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            } else if ((randomNumber > 50) && (randomNumber < 100)) {
+                println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            } else if (randomNumber > 100) {
+                println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
+            }
+            println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
+        }
+    }
+
     // Angriffe für den Zyklopen (Endgegner)
     open fun evilAttack(hero: Hero) {
         if (!hero.isProtected) {
