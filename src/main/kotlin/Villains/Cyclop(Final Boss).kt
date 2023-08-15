@@ -29,7 +29,7 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int) : Villain(name, hp) {
         var attackName = attacks[index]
         when (attackName) {
             "evilAttack" -> evilAttack(heroes.random())
-            "underUnderBoss" -> underUnderBoss()
+            "underUnderBoss" -> underUnderBoss(hero)
             "stomper" -> stomper(heroes.random())
             "boulderHurl" -> boulderHurl(heroes.random())
             "quakeCall" -> quakeCall(heroes.random())
@@ -38,49 +38,4 @@ open class `Cyclop(Final Boss)`(name: String, hp: Int) : Villain(name, hp) {
             "wrathOfTheGods" -> wrathOfTheGods(heroes.random())
         }
     }
-
-    override fun evilAttack(hero: Hero) {
-        super.evilAttack(hero)
-    }
-
-    override fun takeDamageEvil(damage: Int) {
-        super.takeDamageEvil(damage)
-    }
-
-    override fun underUnderBoss() {
-        super.underUnderBoss()
-    }
-
-    override fun stomper(hero: Hero) {
-        super.stomper(hero)
-    }
-
-    override fun boulderHurl(hero: Hero) {
-        super.boulderHurl(hero)
-    }
-
-    override fun quakeCall(hero: Hero) {
-        super.quakeCall(hero)
-    }
-
-    override fun fieryGaze(hero: Hero) {
-        super.fieryGaze(hero)
-    }
-
-    override fun chainBind(hero: Hero) {
-        super.chainBind(hero)
-    }
-
-    override fun wrathOfTheGods(hero: Hero) {
-        super.wrathOfTheGods(hero)
-    }
-
-    override fun info() {
-        super.info()
-    }
-
-    override fun isAlive() {
-        super.isAlive()
-    }
-
 }

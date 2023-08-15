@@ -1,9 +1,11 @@
 
+import Heroes.Hero
 import Heroes.Kentaur
 import Heroes.Magician
 import Heroes.Warrior
 import Villains.`Cyclop(Final Boss)`
 import Villains.`Satyr(underboss)`
+import Villains.Villain
 
 val space = "|||||||||||||||||||||||||||||||||||||"
 
@@ -55,3 +57,43 @@ var bag: MutableList<String> = mutableListOf(
     "Protective Potion",
     "Protective Potion"
 )
+
+
+fun villainsTurn(heroes: MutableList<Hero>, firstVillain: Villain, finalVillain: Villain) {
+    if (firstVillain.alive && heroes.any { it.alive }) {
+        firstVillain.attack(heroes.filter { it.alive }.random())
+    } else if (!firstVillain.alive && heroes.any { it.alive }) {
+        finalVillain.attack(heroes.filter { it.alive }.random())
+    }
+}
+
+fun surprise(hero: MutableList<Hero>) {
+    println("$space Congratulations! You have defeated the satyr and discovered 500 gold coins in his pockets \t$space")
+    Thread.sleep(1500)
+    // Füge das Gold  hinzu
+    gold += 500
+
+    println("$space +500 Gold for each Hero\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+    Thread.sleep(1500)
+    // Heile alle Helden auf volle Gesundheit
+    for (hero in heroes) {
+        hero.hp = hero.MAX_HP
+    }
+    println("$space All Heroes are fully healed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+    Thread.sleep(1500)
+    println("$space Thanks to you, we are now safe and we gift you a Healing Potion as a token of our gratitude $space")
+    bag.add("Healing Potion")
+    println("$space +Healing Potion\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+
+    println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
+    Thread.sleep(1500)
+}
+
+fun status(heroes: List<Hero>) {
+    println("$space\t\t\t\t\t╔═════════════════════════════════════════════════════╗\t\t\t\t\t\t$space")
+    for (hero in heroes) {
+        println("$space \t\t\t\t\t║ ${hero.name} Health: ${hero.hp} / ${hero.MAX_HP}\t\t\t\t\t\t\t║\t\t\t\t\t$space")
+    }
+    println("$space\t\t\t\t\t║ Gold: $gold                                      \t  ║  \t\t\t\t\t$space")
+    println("$space \t\t\t\t\t╚═════════════════════════════════════════════════════╝\t\t\t\t\t\t$space")
+}

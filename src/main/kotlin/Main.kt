@@ -10,8 +10,20 @@
 
 import Heroes.*
 import Villains.Villain
+import java.io.File
+import javax.sound.sampled.AudioSystem
+import javax.sound.sampled.Clip
 
 fun main() {
+    val soundFile = File("src/main/kotlin/audio/Schreibmaschine.wav")
+
+    val audioInputStream = AudioSystem.getAudioInputStream(soundFile)
+    val clip: Clip = AudioSystem.getClip()
+
+    clip.open(audioInputStream)
+    repeat(5){
+        clip.start()
+    }
 
     // Der Nachfolgende Text ist von Chat GPT und der code für die rainbow Farbe habe ich auch dort abgeschrieben
     val winningText =
@@ -63,7 +75,7 @@ fun main() {
     introText.lines().forEachIndexed { index, line ->
         // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(2000)
+            Thread.sleep(20)
         }
         // Drucke die Zeile und überschreibe sie mit \r
         println(line)
@@ -101,6 +113,7 @@ fun main() {
     }
 
     surprise(heroes)
+    status(heroes)
 
 
     while (heroes.any { it.alive } && finalVillain.alive) {
@@ -123,33 +136,4 @@ fun main() {
         println("$space ${finalVillain.name} defeated all Heroes!")
         println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||${red}Game Over$x!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
     }
-}
-
-fun villainsTurn(heroes: MutableList<Hero>, firstVillain: Villain, finalVillain: Villain) {
-    if (firstVillain.alive && heroes.any { it.alive }) {
-        firstVillain.attack(heroes.filter { it.alive }.random())
-    } else if (!firstVillain.alive && heroes.any { it.alive }) {
-        finalVillain.attack(heroes.filter { it.alive }.random())
-    }
-}
-
-fun surprise(hero: MutableList<Hero>) {
-    println("$space Congratulations! You have defeated the satyr and discovered 500 gold coins in his pockets $space")
-
-    // Füge das Gold  hinzu
-    gold += 500
-
-    println("$space +500 Gold for each Hero")
-
-    // Heile alle Helden auf volle Gesundheit
-    for (hero in heroes) {
-        hero.hp = hero.MAX_HP
-    }
-    println("$space All Heroes are fully healed!")
-
-    println("$space Thanks to you, we are now safe and we gift you a Healing Potion as a token of our gratitude $space")
-    bag.add("Healing Potion")
-    println("$space +Healing Potion")
-
-    println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
 }

@@ -33,40 +33,4 @@ open class `Satyr(underboss)`(name: String, hp: Int) : Villain(name, hp) {
         }
     }
 
-    override fun takeDamageEvil(damage: Int) {
-        super.takeDamageEvil(damage)
-    }
-
-    override fun doubleHoofStrike(hero: Hero) {
-        super.doubleHoofStrike(hero)
-    }
-
-    override fun fluteEnchantment(hero: Hero) {
-        super.fluteEnchantment(hero)
-    }
-
-    override fun forestCurse(hero: Hero) {
-        super.forestCurse(hero)
-    }
-
-    override fun panicCry(hero: Hero) {
-        super.panicCry(hero)
-    }
-
-    override fun aetherConjuring(hero: Hero) {
-        super.aetherConjuring(hero)
-    }
-
-    override fun satyricTempest(hero: Hero) {
-        super.satyricTempest(hero)
-    }
-
-    override fun info() {
-        super.info()
-    }
-
-    override fun isAlive() {
-        super.isAlive()
-    }
-
 }

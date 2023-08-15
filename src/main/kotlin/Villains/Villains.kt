@@ -44,16 +44,22 @@ open class Villain(var name: String, var hp: Int) {
     }
 
     // Es wird ein helfer gerufen der schutz bietet und angreift
-    open fun underUnderBoss() {
+    open fun underUnderBoss(hero: Hero) {
         if (!underboss) {
-            println("$space														\t\tA hellhound has come to the rescue $space")
+            println("$space											\t\tA hellhound has come to the rescue $space")
             hp += 200
+            if (!hero.isProtected) {
+                val damage = 250
+                hero.takeDamage(damage)
+                println("$space\t\t\t\t\t\t\t\t\t\tThe hellhound attack $hero and takes $damage damage!$space")
+            }
         }
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Kleiner Flächenschaden wegen stampfer
     open fun stomper(hero: Hero) {
-        println("$space Feel the earth tremble beneath my might!$space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFeel the earth tremble beneath my might! $space")
         val randomNumber: Int = (0..100).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage!$space")
@@ -64,14 +70,14 @@ open class Villain(var name: String, var hp: Int) {
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
             println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 100) {
-            println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
+            println("$space   \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Wirft großen stein auf seine gegner
     open fun boulderHurl(hero: Hero) {
-        println("$space Witness the power of flying boulders!$space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWitness the power of flying boulders! $space")
         val randomNumber: Int = (0..175).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
@@ -82,14 +88,14 @@ open class Villain(var name: String, var hp: Int) {
         } else if ((randomNumber > 70) && (randomNumber < 130)) {
             println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 130) {
-            println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
+            println("$space   \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
 
     // Durch schlag auf boden, entsteht ein Erbeben was einen größeren Schaden anrichtet wie stomper()
     open fun quakeCall(hero: Hero) {
-        println("$space Bow before the earth's fury!$space")
+        println("$space	\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBow before the earth's fury!$space")
         val randomNumber: Int = (0..150).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
@@ -100,7 +106,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if ((randomNumber > 50) && (randomNumber < 100)) {
             println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 100) {
-            println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
+            println("$space   \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
@@ -118,7 +124,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if ((randomNumber > 100) && (randomNumber < 150)) {
             println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 150) {
-            println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
+            println("$space   \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
     }
@@ -143,7 +149,7 @@ open class Villain(var name: String, var hp: Int) {
         } else if ((randomNumber > 1) && (randomNumber < 150)) {
             println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 150) && (randomNumber < 350)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 350) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -153,16 +159,16 @@ open class Villain(var name: String, var hp: Int) {
     // Angriffe für den Satyr
     // Doppelhuf sorgt für einen Erdstoß, der den Gegner trifft
     open fun doubleHoofStrike(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFeel the thunder of my hooves! $space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Feel the thunder of my hooves! $space")
         val randomNumber: Int = (0..75).random()
         hero.takeDamage(randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 40)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 40) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -171,16 +177,16 @@ open class Villain(var name: String, var hp: Int) {
 
     // Flötenzauber raubt die lebensenergie
     open fun fluteEnchantment(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Dance to the melody of enchantment! $space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDance to the melody of enchantment! $space")
         val randomNumber: Int = (0..50).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 30)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 30) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -189,16 +195,16 @@ open class Villain(var name: String, var hp: Int) {
 
     // Waldes fluch entfesselt einen fluch, der Pflanzen und Tiere auf die Feinde losgehen lässt
     open fun forestCurse(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNative's wrath shall be your undoing! $space")
+        println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t Native's wrath shall be your undoing! $space")
         val randomNumber: Int = (0..100).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 25) && (randomNumber < 65)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 65) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -207,16 +213,16 @@ open class Villain(var name: String, var hp: Int) {
 
     // Panischer schrei versetzt Furcht und Panik in die Herzen der Gegner
     open fun panicCry(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTremble in the grip of fear! $space")
+        println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Tremble in the grip of fear! $space")
         val randomNumber: Int = (0..30).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 20) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -225,16 +231,16 @@ open class Villain(var name: String, var hp: Int) {
 
     // Äther beschwörung bring Kräfte aus anderen Dimmensionen zum Satyr
     open fun aetherConjuring(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFrom beyond the realms, I summon! $space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  From beyond the realms, I summon! $space")
         val randomNumber: Int = (0..50).random()
         hero.takeDamage(randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  $name's attack was good! $space")
         } else if (randomNumber > 35) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
@@ -243,24 +249,20 @@ open class Villain(var name: String, var hp: Int) {
 
     // Satyrischer Sturm beschwört einen Sturm herbei, der alle gegner wegfegt
     open fun satyricTempest(hero: Hero) {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUnleash the storm of a wild heart! $space")
+        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Unleash the storm of a wild heart! $space")
         val randomNumber: Int = (0..80).random()
         hero.allTakeDamage(heroes, randomNumber)
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space  \t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 50)) {
-            println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
+            println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 50) {
             println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was strong! $space")
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
-    }
-
-    open fun info() {
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name have $hp $space")
     }
 
     open fun isAlive() {
