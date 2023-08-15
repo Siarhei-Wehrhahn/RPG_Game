@@ -15,13 +15,8 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
     }
 
     override fun putOut(villain: Villain) {
-        println("$space $name, choose your action:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        println("$space 2. Heal\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        println("$space 3. Use Protective Spell\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        println("$space 4. Use Vitamine\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
-        print("$space ")
-        var answere = readLine()?.lowercase()
+        super.putOut(villain)
+        val answere = readlnOrNull()?.lowercase()
         if ((answere == "attack") || (answere == "1")) {
             attack(villain)
         } else if ((answere == "heal") || (answere == "2")) {
@@ -30,8 +25,10 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
             useProtectivePotion(villain)
         } else if ((answere == "use vitamins") || (answere == "4")) {
             takeVitamins(villain)
-        } else if (answere == "") {
-            println("Ungültige eingabe!")
+        } else if (answere == "open shop" || answere == "5") {
+            shop(villain)
+        } else {
+            println("$space Invalid input!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             putOut(villain)
         }
     }
@@ -56,6 +53,10 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
 
     override fun allTakeDamage(heroes: List<Hero>, damage: Int) {
         super.allTakeDamage(heroes, damage)
+    }
+
+    override fun openBag(villain: Villain) {
+        super.openBag(villain)
     }
 
     override fun info() {
