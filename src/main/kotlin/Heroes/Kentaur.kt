@@ -1,6 +1,8 @@
 package Heroes
 
 import Villains.Villain
+import kentauraudio
+import playSound
 import space
 
 class Kentaur(name: String, hp: Int) : Hero(name, hp) {
@@ -22,6 +24,7 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
             "open shop", "3" -> shop(villain)
             else -> {
                 println("$space Invalid input!")
+                println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
                 putOut(MAX_HP,villain)
             }
         }
@@ -30,6 +33,7 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
 
     override fun attack(villain: Villain) {
         println("$space $name charges forward, employing both his archery skills and powerful hooves in the attack!\t$space")
+        playSound(kentauraudio)
         super.attack(villain)
     }
 

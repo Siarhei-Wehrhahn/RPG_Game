@@ -27,6 +27,7 @@ class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse ang
             "open shop", "3" -> shop(villain)
             else -> {
                 println("$space Invalid input!")
+                println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
                 putOut(MAX_HP,villain)
             }
         }

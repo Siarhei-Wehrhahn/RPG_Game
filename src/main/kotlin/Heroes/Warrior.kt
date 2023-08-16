@@ -25,6 +25,7 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
             "open shop", "3" -> shop(villain)
             else -> {
                 println("$space Invalid input!")
+                println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
                 putOut(MAX_HP, villain)
             }
         }
@@ -37,13 +38,10 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
         // Wenn er auf vitaminen ist dann, bekommt er 10 % mehr stärke
         if (isOnVitamine) {
             randomNumber *= 1.1.toInt()
-        } else {
         }
-
+        Thread.sleep(3000)
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
-        println("$space $name raises their mighty sword and charges forward!\t\t\t\t\t\t\t\t\t\t\t$space")
-        playSound(sword)
         // Hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
             println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")

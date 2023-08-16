@@ -32,7 +32,7 @@ open class Hero(var name: String, var hp: Int) {
         if (isOnVitamine) {
             randomNumber = (randomNumber * 1.1).toInt()
         }
-        Thread.sleep(2000)
+        Thread.sleep(3000)
 
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
@@ -114,6 +114,7 @@ open class Hero(var name: String, var hp: Int) {
 
     // Der Schaden wird angenommen und abgezogen
     open fun takeDamage(damage: Int) {
+        Thread.sleep(3000)
         if (!isProtected) {
             Thread.sleep(2500)
             // Die Damage(randomNumber) von den Bösewichten wird von den hp abgezogen
@@ -133,6 +134,7 @@ open class Hero(var name: String, var hp: Int) {
     }
 
     open fun allTakeDamage(heroes: List<Hero>, damage: Int) {
+        Thread.sleep(3000)
         for (hero in heroes) {
             hero.hp -= damage
             if (hp <= 0) {
@@ -140,7 +142,7 @@ open class Hero(var name: String, var hp: Int) {
 
                 alive = false
             } else {
-                println("$space\t\t\t\t\t\t\t\t\t\t\t\t${hero.name} takes $damage damage.  Remaining HP: ${hero.hp} $space")
+                println("$space \t\t\t\t\t\t\t\t\t\t\t\t\t ${hero.name} takes $damage damage.  Remaining HP: ${hero.hp} $space")
             }
         }
     }

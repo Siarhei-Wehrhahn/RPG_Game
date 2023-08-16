@@ -50,7 +50,7 @@ fun main() {
     val introText =
         """        
         $star $green Welcome to Legends of Mystica: Chronicles of the Enchanted Realms! $star
-        $wizzard Step into a World of wonder and magic as you embark on an epic journey in 'Legends of Mystica'! $wizzard 
+        $wizzard Step into a World of wonder and magic as you embark on an epic journey in 'Legends of Mystica! $wizzard 
         $wr $kt Prepare to be captivated by a realm brimming with ancient mysteries, fantastical creatures, and untold adventures. $styr $ccps 
         $friendship Your destiny awaits as you immerse yourself in a narrative that weaves together courage, friendship, and the boundless power of imagination. $power 
         $pergament Are you ready to explore the realms of Mystica and etch your own legend in its chronicles? $pergament $x
@@ -58,14 +58,16 @@ fun main() {
         $pergament You must help us defend it. $pergament 
         $pergament What should we do? We await your orders $pergament $x
         """
+
     println("")
     println(titel)
 
+    playSound(introSpeech)
     // Splitte den Text in Zeilen und gehe durch jede Zeile
     introText.lines().forEachIndexed { index, line ->
         // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(20)
+            Thread.sleep(4500)
         }
         // Drucke die Zeile und überschreibe sie mit \r
         println(line)

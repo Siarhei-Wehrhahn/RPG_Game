@@ -2,7 +2,9 @@ package Villains
 
 import Heroes.Hero
 import heroes
+import playSound
 import space
+import takeDamage
 import zyklop
 
 open class Villain(var name: String, var hp: Int) {
@@ -19,6 +21,7 @@ open class Villain(var name: String, var hp: Int) {
         } else {
             println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
+        playSound(takeDamage)
     }
 
     open fun attack(hero: Hero){
@@ -29,7 +32,6 @@ open class Villain(var name: String, var hp: Int) {
         if (!hero.isProtected) {
             val randomNumber: Int = (0..150).random()
             hero.takeDamage(randomNumber)
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
             if (randomNumber == 0) {
                 println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
             } else if ((randomNumber > 1) && (randomNumber < 50)) {
@@ -51,7 +53,7 @@ open class Villain(var name: String, var hp: Int) {
             if (!hero.isProtected) {
                 val damage = 250
                 hero.takeDamage(damage)
-                println("$space\t\t\t\t\t\t\t\t\t\tThe hellhound attack $hero and takes $damage damage!$space")
+                println("$space\t\t\t\t\t\t\t\t\t\tThe hellhound attack $hero and he takes $damage damage!$space")
             }
         }
         println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
@@ -62,7 +64,6 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFeel the earth tremble beneath my might! $space")
         val randomNumber: Int = (0..100).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage!$space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
@@ -80,7 +81,6 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWitness the power of flying boulders! $space")
         val randomNumber: Int = (0..175).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 70)) {
@@ -98,7 +98,6 @@ open class Villain(var name: String, var hp: Int) {
         println("$space	\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBow before the earth's fury!$space")
         val randomNumber: Int = (0..150).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 50)) {
@@ -116,7 +115,6 @@ open class Villain(var name: String, var hp: Int) {
         println("$space Burn in the flames of my gaze!$space")
         val randomNumber: Int = (0..200).random()
         hero.takeDamage(randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 100)) {
@@ -143,7 +141,6 @@ open class Villain(var name: String, var hp: Int) {
         val randomNumber: Int = (0..500).random()
         hp -= 200
         hero.takeDamage(randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 150)) {
@@ -162,11 +159,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Feel the thunder of my hooves! $space")
         val randomNumber: Int = (0..75).random()
         hero.takeDamage(randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 40)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 40) {
@@ -180,11 +176,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDance to the melody of enchantment! $space")
         val randomNumber: Int = (0..50).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 30)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 30) {
@@ -198,11 +193,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t Native's wrath shall be your undoing! $space")
         val randomNumber: Int = (0..100).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 25)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 25) && (randomNumber < 65)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 65) {
@@ -216,11 +210,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Tremble in the grip of fear! $space")
         val randomNumber: Int = (0..30).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 20) {
@@ -234,11 +227,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  From beyond the realms, I summon! $space")
         val randomNumber: Int = (0..50).random()
         hero.takeDamage(randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 10)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 10) && (randomNumber < 20)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  $name's attack was good! $space")
         } else if (randomNumber > 35) {
@@ -252,11 +244,10 @@ open class Villain(var name: String, var hp: Int) {
         println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Unleash the storm of a wild heart! $space")
         val randomNumber: Int = (0..80).random()
         hero.allTakeDamage(heroes, randomNumber)
-        println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name attacks ${hero.name} for $randomNumber damage! $space")
         if (randomNumber == 0) {
             println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack missed! $space")
         } else if ((randomNumber > 1) && (randomNumber < 20)) {
-            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was weak! $space")
+            println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$name's attack was weak! $space")
         } else if ((randomNumber > 20) && (randomNumber < 50)) {
             println("$space    \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t $name's attack was good! $space")
         } else if (randomNumber > 50) {

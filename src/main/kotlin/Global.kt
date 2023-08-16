@@ -7,8 +7,11 @@ import Villains.`Cyclop(Final Boss)`
 import Villains.`Satyr(underboss)`
 import Villains.Villain
 import java.io.File
+import javax.print.attribute.standard.Media
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
+import javax.sound.sampled.FloatControl
+import kotlin.time.Duration
 
 val space = "|||||||||||||||||||||||||||||||||||||"
 
@@ -106,6 +109,9 @@ val gameOverSound = "src/main/kotlin/audio/Game Over.wav"
 val goldGift = "src/main/kotlin/audio/coin Gift.wav"
 val sword = "src/main/kotlin/audio/sword.wav"
 val magic = "src/main/kotlin/audio/magic.wav"
+val kentauraudio = "src/main/kotlin/audio/kentaurSound.wav"
+val takeDamage = "src/main/kotlin/audio/takeDamage.wav"
+val introSpeech = "src/main/kotlin/audio/intro.wav"
 
 // Fun zum laden und abspielen eines Soundeffekts
 fun playSound(audioOrdner: String) {
@@ -120,6 +126,9 @@ fun playSound(audioOrdner: String) {
 
     // Öffne den Clip und lade die audio
     clip.open(audioInput)
+
+    val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+    vol.value = vol.minimum+(0.66f*(vol.maximum-vol.minimum))
 
     // Starte die Wiedergabe des Sounds
     clip.start()
