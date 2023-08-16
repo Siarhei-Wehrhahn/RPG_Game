@@ -1,7 +1,9 @@
 package Heroes
 
 import Villains.Villain
+import playSound
 import space
+import sword
 
 class Warrior(name: String, hp: Int) : Hero(name, hp) {
 
@@ -41,7 +43,7 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
         println("$space $name raises their mighty sword and charges forward!\t\t\t\t\t\t\t\t\t\t\t$space")
-
+        playSound(sword)
         // Hier wir die attacke zufällig generiert
         if (randomNumber == 0) {
             println("$space Oh, no, i missed!\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")

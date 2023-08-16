@@ -1,6 +1,8 @@
 package Heroes
 
 import Villains.Villain
+import magic
+import playSound
 import space
 
 class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse angelegt Primärer konstruktor
@@ -33,6 +35,7 @@ class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse ang
 
     override fun attack(villain: Villain) {
         println("$space $name's fingertips crackle with arcane energy as a dazzling spell takes shape!\t\t\t\t$space")
+        playSound(magic)
         super.attack(villain)
     }
 

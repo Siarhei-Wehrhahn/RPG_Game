@@ -6,6 +6,9 @@ import Heroes.Warrior
 import Villains.`Cyclop(Final Boss)`
 import Villains.`Satyr(underboss)`
 import Villains.Villain
+import java.io.File
+import javax.sound.sampled.AudioSystem
+import javax.sound.sampled.Clip
 
 val space = "|||||||||||||||||||||||||||||||||||||"
 
@@ -72,8 +75,8 @@ fun surprise(hero: MutableList<Hero>) {
     Thread.sleep(1500)
     // Füge das Gold  hinzu
     gold += 500
-
-    println("$space +500 Gold for each Hero\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+    playSound(goldGift)
+    println("$space +500 Gold the heroes\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
     Thread.sleep(1500)
     // Heile alle Helden auf volle Gesundheit
     for (hero in heroes) {
@@ -96,4 +99,28 @@ fun status(heroes: List<Hero>) {
     }
     println("$space\t\t\t\t\t║ Gold: $gold                                      \t  ║  \t\t\t\t\t$space")
     println("$space \t\t\t\t\t╚═════════════════════════════════════════════════════╝\t\t\t\t\t\t$space")
+}
+
+// Hier werden die dateipfade von den audios inizialisiert
+val gameOverSound = "src/main/kotlin/audio/Game Over.wav"
+val goldGift = "src/main/kotlin/audio/coin Gift.wav"
+val sword = "src/main/kotlin/audio/sword.wav"
+val magic = "src/main/kotlin/audio/magic.wav"
+
+// Fun zum laden und abspielen eines Soundeffekts
+fun playSound(audioOrdner: String) {
+    // Erstelle eine Datei aus dem angegebenen Dateipfad
+    val audio = File(audioOrdner)
+
+    // Hier wird die audio in das Audiosystem gepackt
+    val audioInput = AudioSystem.getAudioInputStream(audio)
+
+    // es wird ein Clip-Objekt erstellt um den Sound abzuspielen
+    val clip: Clip = AudioSystem.getClip()
+
+    // Öffne den Clip und lade die audio
+    clip.open(audioInput)
+
+    // Starte die Wiedergabe des Sounds
+    clip.start()
 }

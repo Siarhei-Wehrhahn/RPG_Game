@@ -15,16 +15,6 @@ import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
 
 fun main() {
-    val soundFile = File("src/main/kotlin/audio/Schreibmaschine.wav")
-
-    val audioInputStream = AudioSystem.getAudioInputStream(soundFile)
-    val clip: Clip = AudioSystem.getClip()
-
-    clip.open(audioInputStream)
-    repeat(5){
-        clip.start()
-    }
-
     // Der Nachfolgende Text ist von Chat GPT und der code für die rainbow Farbe habe ich auch dort abgeschrieben
     val winningText =
         "$space Horray, you have defeated the beasts! Our castle is saved, and you are our hero. Your courage" +
@@ -133,6 +123,7 @@ fun main() {
         }
     }
     if (heroes.all { !it.alive }) {
+        playSound(gameOverSound)
         println("$space ${finalVillain.name} defeated all Heroes!")
         println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||${red}Game Over$x!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
     }
