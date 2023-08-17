@@ -49,7 +49,7 @@ var firstVillain = satyr
 var finalVillain = zyklop
 
 
-var gold = 0
+var gold = 55550
 
 var bag: MutableList<String> = mutableListOf(
     "Healing Potion",
@@ -112,26 +112,45 @@ val takeDamage = "src/main/kotlin/audio/takeDamage.wav"
 val introSpeech = "src/main/kotlin/audio/introText.wav"
 val healDrink = "src/main/kotlin/audio/healDrink.wav"
 val protectiveSpell = "src/main/kotlin/audio/protectiveSpell.wav"
+val shop = "src/main/kotlin/audio/shop.wav"
+val openBag = "src/main/kotlin/audio/openBag.wav"
 
 
 // Fun zum laden und abspielen eines Soundeffekts
 fun playSound(soundFile: String) {
-
+    // Definiere die gewünschte Lautstärke für den Sound
     var volFloat = 0.66f
 
+    // Mit Thread starte ich Multitasking
     thread {
+        // Erstelle einen AudioInputStream aus der Sounddatei
         val stream = AudioSystem.getAudioInputStream(java.io.File(soundFile))
+
+        // Erstelle ein Clip-Objekt für die Audiowiedergabe
         val clip = AudioSystem.getClip()
+
+        // Öffne den Clip und lade den AudioInputStream
         clip.open(stream)
+
+        // Hole die Lautstärke-Steuerung und setze die gewünschte Lautstärke
         val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
         vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
+
+        // Starte die Audiowiedergabe
         clip.start()
+
+        // Pausiere den Thread für die Dauer der Audiowiedergabe
         Thread.sleep(clip.microsecondLength / 1000)
+
+        // Stoppe die Audiowiedergabe
         clip.stop()
+
+        // Schließe den Clip und den Stream, um Ressourcen freizugeben
         clip.close()
         stream.close()
     }
 }
+
 
 fun playBackgroundIntroSound() {
 
@@ -166,12 +185,6 @@ fun playBackgroundSound() {
         val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
         vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
         clip.loop(2)
-        /*
-        Thread.sleep(clip.microsecondLength / 1000)
-        clip.stop()
-        clip.close()
-        stream.close()
 
-         */
     }
 }

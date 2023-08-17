@@ -27,7 +27,7 @@ fun main() {
 // Hier kommt der text kombiniert mit der Farbe rein
     var rainbowText = ""
 
-// In der schleife wir buchstabe für buchstabe genommen und mit einer Farbe kombiniert und speichert jeden buchstaben und index in der zeichenkette
+// In der schleife wird buchstabe für buchstabe genommen und mit einer Farbe kombiniert und speichert jeden buchstaben und index in der zeichenkette
     for ((index, char) in winningText.withIndex()) {
 
         // rainbowColors-Liste ausgewählt, index des buchstaben wird durch die anzahl der farben geteilt damit alle farben zyklisch durchlaufen
@@ -97,37 +97,45 @@ fun main() {
     satyr.putOut()
     zyklop.putOut()
 
-// Solange alle am leben sind sollen die helden ihre züge machen danach die bösewichte (erster gegner)
+// Solange alle Helden am Leben sind und der erste Bösewicht am Leben ist, führe die Schleife aus
     while (heroes.any { it.alive } && firstVillain.alive) {
         for (hero in heroes) {
+            // Wenn der Held lebt und der erste Bösewicht am Leben ist
             if (hero.alive && firstVillain.alive) {
+                // Führe Aktion des Helden aus und dann die Aktion der Bösewichte
                 hero.putOut(hero.MAX_HP, firstVillain)
                 villainsTurn(heroes, firstVillain, finalVillain)
 
-                // Wenn heroes besiegt dan print
+                // Wenn der Held besiegt wurde, aber der Bösewicht noch am Leben ist
             } else if (!hero.alive && firstVillain.alive) {
+                // Gib eine Meldung aus und führe die Aktion der Bösewichte aus
                 println("$space\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ${firstVillain.name} defeated ${hero.name}!$space")
                 villainsTurn(heroes, firstVillain, finalVillain)
 
-                // Wenn bösewicht besiegt dann zum endgegner weiter
+                // Wenn der Held lebt, aber der erste Bösewicht besiegt wurde
             } else if (hero.alive && !firstVillain.alive) {
+                // Beende die Schleife, um zur nächsten Phase überzugehen
                 break
             }
         }
     }
 
+// Zeige Status der Helden an und gebe helden ein Geschenk
     surprise(heroes)
     status(heroes)
 
-
+// Solange alle Helden am Leben sind und der Endgegner am Leben ist, führe die Schleife aus
     while (heroes.any { it.alive } && finalVillain.alive) {
         for (hero in heroes) {
+            // Wenn der Held lebt und der Endgegner am Leben ist
             if (hero.alive && finalVillain.alive) {
+                // Führe Aktion des Helden aus und dann die Aktion der Bösewichte
                 hero.putOut(hero.MAX_HP, finalVillain)
                 villainsTurn(heroes, firstVillain, finalVillain)
 
-                // Wenn Bösewicht besiegt ist print
+                // Wenn der Endgegner besiegt wurde
             } else if (!finalVillain.alive) {
+                // Gib eine Meldung aus und beende die Schleife
                 println("$space ${hero.name} defeated ${finalVillain.name}!")
                 println("$space ")
                 print(rainbowText)
@@ -136,7 +144,10 @@ fun main() {
             }
         }
     }
+
+// Wenn alle Helden besiegt wurden
     if (heroes.all { !it.alive }) {
+        // Spiele den "Game Over"-Sound ab und gib eine Meldung aus
         playSound(gameOverSound)
         println("$space ${finalVillain.name} defeated all Heroes!")
         println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||${red}Game Over$x!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
