@@ -49,25 +49,31 @@ fun main() {
     // Text Quelle: Chat GPT
     val introText =
         """        
-        $star $green Welcome to Legends of Mystica: Chronicles of the Enchanted Realms! $star
-        $wizzard Step into a World of wonder and magic as you embark on an epic journey in 'Legends of Mystica! $wizzard 
-        $wr $kt Prepare to be captivated by a realm brimming with ancient mysteries, fantastical creatures, and untold adventures. $styr $ccps 
-        $friendship Your destiny awaits as you immerse yourself in a narrative that weaves together courage, friendship, and the boundless power of imagination. $power 
-        $pergament Are you ready to explore the realms of Mystica and etch your own legend in its chronicles? $pergament $x
-        $castle $red Your castle is under attack! $attck 
-        $pergament You must help us defend it. $pergament 
-        $pergament What should we do? We await your orders $pergament $x
+                Step into 'Legends of Mystica: Chronicles of Enchantment,'
+                Embark on a journey where wonder and might entwine,
+                Unveil an epic saga in 'Legends of Mystica!'
+                Harness your imagination, your power will shine.
+
+                Are you ready to traverse the dominions of Mystica,
+                Etch your legend within its chronicles divine?
+                A fortress under siege, dire defense required,
+                Awaiting your command, as the heroes align.
+
+                How shall we face this impending assault,
+                Your wisdom, our guide, as the stars align bright?
+                The fate of Mystica hangs in the balance,
+                Lead us to triumph, through day and through night.
         """
 
     println("")
     println(titel)
 
-    playSound(introSpeech)
+   //playSound(introSpeech)
     // Splitte den Text in Zeilen und gehe durch jede Zeile
     introText.lines().forEachIndexed { index, line ->
         // Warte 3 Sekunde zwischen den Zeilen
         if (index > 1) {
-            Thread.sleep(4500)
+            Thread.sleep(40)
         }
         // Drucke die Zeile und überschreibe sie mit \r
         println(line)
