@@ -1,4 +1,3 @@
-
 import Heroes.Hero
 import Heroes.Kentaur
 import Heroes.Magician
@@ -125,9 +124,52 @@ fun playSound(soundFile: String) {
         val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
         vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
         clip.start()
-        Thread.sleep(clip.microsecondLength/1000)
+        Thread.sleep(clip.microsecondLength / 1000)
         clip.stop()
         clip.close()
         stream.close()
+    }
+}
+
+fun playBackgroundIntroSound() {
+
+    var volFloat = 0.50f
+
+    var soundFile = "src/main/kotlin/audio/introSound.wav"
+
+    thread {
+        val stream = AudioSystem.getAudioInputStream(java.io.File(soundFile))
+        val clip = AudioSystem.getClip()
+        clip.open(stream)
+        val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+        vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
+        clip.start()
+        Thread.sleep(clip.microsecondLength / 1000)
+        clip.stop()
+        clip.close()
+        stream.close()
+    }
+}
+
+fun playBackgroundSound() {
+
+    var volFloat = 0.66f
+
+    var soundFile = "src/main/kotlin/audio/backgroundSound.wav"
+
+    thread {
+        val stream = AudioSystem.getAudioInputStream(java.io.File(soundFile))
+        val clip = AudioSystem.getClip()
+        clip.open(stream)
+        val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+        vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
+        clip.loop(2)
+        /*
+        Thread.sleep(clip.microsecondLength / 1000)
+        clip.stop()
+        clip.close()
+        stream.close()
+
+         */
     }
 }

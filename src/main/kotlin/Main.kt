@@ -66,11 +66,12 @@ fun main() {
                 $pergament Lead us to triumph, through day and through night.$x $pergament 
         """
 
-    playSound(introSound)
+    playBackgroundIntroSound()
     println("")
     println(titel)
-    Thread.sleep(12000)
 
+    Thread.sleep(10000)
+    playBackgroundSound()
     playSound(introSpeech)
 
 // Splitte den Text in Zeilen und gehe durch jede Zeile
@@ -85,6 +86,7 @@ fun main() {
             print("\r")
         }
     }
+
 
 // Die Vorstellung
     println(" _______________________________________________________________________________________________________________________________________________________________________")
