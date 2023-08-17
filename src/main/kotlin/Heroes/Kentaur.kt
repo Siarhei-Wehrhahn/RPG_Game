@@ -34,6 +34,7 @@ class Kentaur(name: String, hp: Int) : Hero(name, hp) {
     override fun attack(villain: Villain) {
         println("$space $name charges forward, employing both his archery skills and powerful hooves in the attack!\t$space")
         playSound(kentauraudio)
+        Thread.sleep(1000)
         super.attack(villain)
     }
 

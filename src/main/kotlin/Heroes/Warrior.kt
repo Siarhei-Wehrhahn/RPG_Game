@@ -33,13 +33,14 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
 
 
     override fun attack(villain: Villain) {
+        playSound(sword)
         var randomNumber = (0..100).random()
 
         // Wenn er auf vitaminen ist dann, bekommt er 10 % mehr stärke
         if (isOnVitamine) {
             randomNumber *= 1.1.toInt()
         }
-        Thread.sleep(3000)
+        Thread.sleep(1500)
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
         // Hier wir die attacke zufällig generiert

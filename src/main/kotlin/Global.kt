@@ -10,6 +10,7 @@ import java.io.File
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
 import javax.sound.sampled.FloatControl
+import kotlin.concurrent.thread
 
 val space = "|||||||||||||||||||||||||||||||||||||"
 
@@ -109,27 +110,23 @@ val sword = "src/main/kotlin/audio/sword.wav"
 val magic = "src/main/kotlin/audio/magic.wav"
 val kentauraudio = "src/main/kotlin/audio/kentaurSound.wav"
 val takeDamage = "src/main/kotlin/audio/takeDamage.wav"
-//val introSpeech = "src/main/kotlin/audio/intro.wav"
+val introSpeech = "src/main/kotlin/audio/intro.wav"
 
 // Fun zum laden und abspielen eines Soundeffekts
-fun playSound(audioOrdner: String) {
-    // Erstelle eine Datei aus dem angegebenen Dateipfad
-    val audio = File(audioOrdner)
+fun playSound(soundFile: String) {
 
-    // Hier wird die audio in das Audiosystem gepackt
-    val audioInput = AudioSystem.getAudioInputStream(audio)
+    var volFloat = 0.66f
 
-    // es wird ein Clip-Objekt erstellt um den Sound abzuspielen
-    val clip: Clip = AudioSystem.getClip()
-
-    // Öffne den Clip und lade die audio
-    clip.open(audioInput)
-
-
-    // Starte die Wiedergabe des Sounds
-    clip.start()
-    val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-    vol.value = vol.minimum+(0.66f*(vol.maximum-vol.minimum))
-
-
+    thread {
+        val stream = AudioSystem.getAudioInputStream(java.io.File(soundFile))
+        val clip = AudioSystem.getClip()
+        clip.open(stream)
+        val vol = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+        vol.value = vol.minimum + (volFloat * (vol.maximum - vol.minimum))
+        clip.start()
+        Thread.sleep(clip.microsecondLength/1000)
+        clip.stop()
+        clip.close()
+        stream.close()
+    }
 }

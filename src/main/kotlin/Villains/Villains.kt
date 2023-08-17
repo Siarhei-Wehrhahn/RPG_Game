@@ -4,15 +4,18 @@ import Heroes.Hero
 import heroes
 import playSound
 import space
+import sword
 import takeDamage
 import zyklop
 
 open class Villain(var name: String, var hp: Int) {
 
-    var underboss = false
+    private var underboss = false
     var alive = true
 
     open fun takeDamageEvil(damage: Int) {
+        Thread.sleep(2500)
+        playSound(takeDamage)
         hp -= damage
         if (hp <= 0) {
             println("$space $name are dead  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  $space")
@@ -21,7 +24,6 @@ open class Villain(var name: String, var hp: Int) {
         } else {
             println("$space $name takes $damage damage. Remaining HP: $hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         }
-        playSound(takeDamage)
     }
 
     open fun attack(hero: Hero){

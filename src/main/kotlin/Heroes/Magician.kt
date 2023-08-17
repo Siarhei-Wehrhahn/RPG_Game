@@ -37,6 +37,7 @@ class Magician(name: String, hp: Int) : Hero(name, hp) {           // Klasse ang
     override fun attack(villain: Villain) {
         println("$space $name's fingertips crackle with arcane energy as a dazzling spell takes shape!\t\t\t\t$space")
         playSound(magic)
+        Thread.sleep(2500)
         super.attack(villain)
     }
 

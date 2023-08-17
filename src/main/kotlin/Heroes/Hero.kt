@@ -32,7 +32,6 @@ open class Hero(var name: String, var hp: Int) {
         if (isOnVitamine) {
             randomNumber = (randomNumber * 1.1).toInt()
         }
-        Thread.sleep(3000)
 
         // Hier wird der bösewicht anvisiert
         villain.takeDamageEvil(randomNumber)
