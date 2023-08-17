@@ -93,14 +93,7 @@ fun surprise(hero: MutableList<Hero>) {
     Thread.sleep(1500)
 }
 
-fun status(heroes: List<Hero>) {
-    println("$space\t\t\t\t\t╔═════════════════════════════════════════════════════╗\t\t\t\t\t\t$space")
-    for (hero in heroes) {
-        println("$space \t\t\t\t\t║ ${hero.name} Health: ${hero.hp} / ${hero.MAX_HP}\t\t\t\t\t\t\t║\t\t\t\t\t$space")
-    }
-    println("$space\t\t\t\t\t║ Gold: $gold                                      \t  ║  \t\t\t\t\t$space")
-    println("$space \t\t\t\t\t╚═════════════════════════════════════════════════════╝\t\t\t\t\t\t$space")
-}
+
 
 // Hier werden die dateipfade von den audios inizialisiert
 val gameOverSound = "src/main/kotlin/audio/Game Over.wav"

@@ -28,6 +28,7 @@ open class Hero(var name: String, var hp: Int) {
         println("$space 1. Attack\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         println("$space 2. Bag\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space") // Neue Option für die Tasche
         println("$space 3. Open shop\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+        println("$space 4. Status \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
         print("$space ")
 
     }
@@ -233,5 +234,16 @@ open class Hero(var name: String, var hp: Int) {
             println("$space Invalid input\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             shop(villain)
         }
+    }
+
+    fun status(heroes: List<Hero>, villain: Villain) {
+        println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")
+        println("$space\t\t\t\t\t╔═════════════════════════════════════════════════════╗\t\t\t\t\t\t$space")
+        for (hero in heroes) {
+            println("$space \t\t\t\t\t║ ${hero.name} Health: ${hero.hp} / ${hero.MAX_HP} \t\t\t\t\t\t\t  ║\t\t\t\t\t\t$space")
+        }
+        println("$space\t\t\t\t\t║ Gold: $gold                                      \t  ║  \t\t\t\t\t$space")
+        println("$space \t\t\t\t\t╚═════════════════════════════════════════════════════╝\t\t\t\t\t\t$space")
+        putOut(MAX_HP, villain)
     }
 }

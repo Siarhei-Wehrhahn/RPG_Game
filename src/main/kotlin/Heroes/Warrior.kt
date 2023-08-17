@@ -1,6 +1,7 @@
 package Heroes
 
 import Villains.Villain
+import heroes
 import playSound
 import space
 import sword
@@ -23,6 +24,7 @@ class Warrior(name: String, hp: Int) : Hero(name, hp) {
             "attack", "1" -> attack(villain)
             "bag", "2" -> openBag(MAX_HP, villain) // Neue Funktion für die Tasche
             "open shop", "3" -> shop(villain)
+            "status", "4" -> status(heroes, villain)
             else -> {
                 println("$space Invalid input!")
                 println("$space\u001B[33m-----------------------------------------------------------------------------------------------\u001B[0m$space")

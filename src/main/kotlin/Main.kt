@@ -122,7 +122,6 @@ fun main() {
 
 // Zeige Status der Helden an und gebe helden ein Geschenk
     surprise(heroes)
-    status(heroes)
 
 // Solange alle Helden am Leben sind und der Endgegner am Leben ist, führe die Schleife aus
     while (heroes.any { it.alive } && finalVillain.alive) {
