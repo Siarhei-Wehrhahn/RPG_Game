@@ -3,6 +3,10 @@ package Heroes
 import Villains.Villain
 import bag
 import gold
+import healDrink
+import playSound
+import protectiveSpell
+import takeDamage
 import space
 
 open class Hero(var name: String, var hp: Int) {
@@ -55,6 +59,7 @@ open class Hero(var name: String, var hp: Int) {
         // Es wird kontrolliert, ob noch ein trank in rucksack ist
         if (bag.contains("Healing Potion")) {
             println("$space You drink the healing potion.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
+            playSound(healDrink)
             Thread.sleep(5000)
             // Die 150 hp werden zu den hp vom hero dazugezählt
             hp += healingAmount
@@ -77,7 +82,8 @@ open class Hero(var name: String, var hp: Int) {
 
         // Man kann den schutztrank nur trinken, wenn man keinen intus hat, falls überhaupt einer da ist
         if (!isProtected && bag.contains("Protective Potion")) {
-            println("$space $name drink a Protective Potion!$space")
+            println("$space $name use a Protective Potion!  $space")
+            playSound(protectiveSpell)
             Thread.sleep(2500)
             bag.remove("Protective Potion")
             isProtected = true
@@ -92,6 +98,7 @@ open class Hero(var name: String, var hp: Int) {
         if (!isOnVitamine && bag.contains("Vitamins")) {
             println("$space You take the vitamins\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             Thread.sleep(3000)
+            playSound(takeDamage)
             println("$space GAAAAARRRHH!  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t$space")
             isOnVitamine = true
             println("$space You are now on special vitamins. Now you are 10% stronger!\t\t\t\t\t\t\t\t\t$space")
