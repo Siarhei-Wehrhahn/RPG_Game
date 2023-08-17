@@ -110,7 +110,8 @@ val sword = "src/main/kotlin/audio/sword.wav"
 val magic = "src/main/kotlin/audio/magic.wav"
 val kentauraudio = "src/main/kotlin/audio/kentaurSound.wav"
 val takeDamage = "src/main/kotlin/audio/takeDamage.wav"
-val introSpeech = "src/main/kotlin/audio/intro.wav"
+val introSpeech = "src/main/kotlin/audio/introText.wav"
+val introSound = "src/main/kotlin/audio/introSound.wav"
 
 // Fun zum laden und abspielen eines Soundeffekts
 fun playSound(soundFile: String) {
